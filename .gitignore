@@ -1,6 +1,11 @@
 # Compiled class file
 *.class
 
+#Directory
+
+/target
+/chapter_001/target
+
 # Log file
 *.log
 
