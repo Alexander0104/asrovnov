@@ -13,12 +13,12 @@ import static org.junit.Assert.assertThat;
  * @version 0.0.1
  * @since 0.0.1
  */
- public class CalculateTest{
+ public class CalculateTest {
 	/**
      * Test echo.
      */ 
 	 @Test
-	 public void whenTakeNameThenTreeEchoPlusName(){
+	 public void whenTakeNameThenTreeEchoPlusName() {
 		  String input = "Alexander Rovnov";
 		  String expect = "Echo, echo, echo : Alexander Rovnov";
 		  Calculate calc = new Calculate();
@@ -26,4 +26,3 @@ import static org.junit.Assert.assertThat;
 		  assertThat(result, is(expect));
 	 }
  }
- 
