@@ -19,7 +19,7 @@ public class CalculatorTest {
      * Test add.
      */
     @Test
-    public void whenAddOnePlusOneThenTwo() {
+    public void whenOneAddOneThenTwo() {
         Calculator calc = new Calculator();
         calc.add(1D, 1D);
         double result = calc.getResult();
@@ -31,11 +31,11 @@ public class CalculatorTest {
      * Test subtract.
      */
     @Test
-    public void whenSubtractOneMinusOneThenTwo() {
+    public void whenFiveSubtractFourThenOne() {
         Calculator calc = new Calculator();
-        calc.subtract(5D, 2D);
+        calc.subtract(5D, 4D);
         double result = calc.getResult();
-        double expected = 3D;
+        double expected = 1D;
         assertThat(result, is(expected));
     }
 
@@ -43,7 +43,7 @@ public class CalculatorTest {
      * Test div.
      */
     @Test
-    public void whenDivOneDelitOneThenTwo() {
+    public void whenSixDivTwoThenThree() {
         Calculator calc = new Calculator();
         calc.div(6D, 2D);
         double result = calc.getResult();
@@ -55,7 +55,7 @@ public class CalculatorTest {
      * Test multiple.
      */
     @Test
-    public void whenMultipleOneUmnogitOneThenTwo() {
+    public void whenTwoMultipleTwoThenFour() {
         Calculator calc = new Calculator();
         calc.multiple(2D, 2D);
         double result = calc.getResult();
