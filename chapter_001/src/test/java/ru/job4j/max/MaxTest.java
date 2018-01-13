@@ -29,6 +29,7 @@ public class MaxTest {
         Max max = new Max();
         int result = max.multiplier(3, 3);
         assertThat(result, is(9));
+
     }
 
     /**
@@ -37,8 +38,8 @@ public class MaxTest {
     @Test
     public void whenFirstComparisonSecondThenMoreSecond() {
         Max max = new Max();
-        String result =max.comparison(4, 9);
-        assertThat(result, is("Второй больше первого"));
+        int result =max.comparison(max.summation(1, 3), max.multiplier(3, 3));
+        assertThat(result, is(9));
     }
 
 }

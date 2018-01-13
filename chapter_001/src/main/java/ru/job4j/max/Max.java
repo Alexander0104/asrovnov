@@ -37,7 +37,7 @@ public class Max {
      * @return comparison first and second
      * @see Max
      */
-    public String comparison(int first, int second) {
-        return first > second ? "Первое больше второго": "Второй больше первого";
+    public int comparison(int first, int second) {
+        return first > second ? first: second;
     }
 }
