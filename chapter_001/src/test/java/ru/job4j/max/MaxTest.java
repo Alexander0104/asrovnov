@@ -36,9 +36,9 @@ public class MaxTest {
      * Test comparison
      */
     @Test
-    public void whenFirstComparisonSecondThenMoreSecond() {
+    public void whenFirstMaxSecondThenMoreSecond() {
         Max max = new Max();
-        int result =max.comparison(max.summation(1, 3), max.multiplier(3, 3));
+        int result =max.maximum(max.summation(1, 3), max.multiplier(3, 3));
         assertThat(result, is(9));
     }
 

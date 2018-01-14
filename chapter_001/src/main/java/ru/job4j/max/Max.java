@@ -31,13 +31,13 @@ public class Max {
         return first * second;
     }
     /**
-     * Method comparison.
+     * Method maximum.
      * @param first  Numeric value int
      * @param second Numeric value int
-     * @return comparison first and second
+     * @return the maximum of two numbers
      * @see Max
      */
-    public int comparison(int first, int second) {
+    public int maximum(int first, int second) {
         return first > second ? first: second;
     }
 }
