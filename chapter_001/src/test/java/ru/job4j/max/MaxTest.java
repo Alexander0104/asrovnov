@@ -33,10 +33,10 @@ public class MaxTest {
     }
 
     /**
-     * Test comparison
+     * Test maximum
      */
     @Test
-    public void whenFirstMaxSecondThenMoreSecond() {
+    public void whenFirstMaximumSecondThenMoreSecond() {
         Max max = new Max();
         int result =max.maximum(max.summation(1, 3), max.multiplier(3, 3));
         assertThat(result, is(9));
