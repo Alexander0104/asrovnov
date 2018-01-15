@@ -7,8 +7,8 @@ import static org.junit.Assert.assertThat;
 /**
  * MaxTest.
  * @author Alexander Rovnov
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class MaxTest {
     /**
@@ -38,8 +38,18 @@ public class MaxTest {
     @Test
     public void whenFirstMaximumSecondThenMoreSecond() {
         Max max = new Max();
-        int result = max.maximum(max.summation(1, 3), max.multiplier(3, 3));
-        assertThat(result, is(9));
+        int result = max.maximum(10, 5);
+        assertThat(result, is(10));
+    }
+
+    /**
+     * Test maximumOfThree
+     */
+    @Test
+    public void whenFirstMaximumOfThreeSecondAndThirdThenMoreThird() {
+        Max max = new Max();
+        int result = max.maximumOfThree(10, 5, 4);
+        assertThat(result, is(10));
     }
 
 }
