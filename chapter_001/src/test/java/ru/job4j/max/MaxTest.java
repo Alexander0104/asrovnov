@@ -36,7 +36,7 @@ public class MaxTest {
      * Test maximum
      */
     @Test
-    public void whenFirstMaximumSecondThenMoreSecond() {
+    public void whenFirstMaximumSecondThenMoreFirst() {
         Max max = new Max();
         int result = max.maximum(10, 5);
         assertThat(result, is(10));
@@ -46,7 +46,7 @@ public class MaxTest {
      * Test maximumOfThree
      */
     @Test
-    public void whenFirstMaximumOfThreeSecondAndThirdThenMoreThird() {
+    public void whenFirstMaximumOfThreeSecondAndThirdThenMoreFirst() {
         Max max = new Max();
         int result = max.maximumOfThree(10, 5, 4);
         assertThat(result, is(10));
