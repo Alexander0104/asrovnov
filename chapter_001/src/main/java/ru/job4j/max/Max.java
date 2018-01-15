@@ -38,6 +38,6 @@ public class Max {
      * @see Max
      */
     public int maximum(int first, int second) {
-        return first > second ? first: second;
+        return first > second ? first : second;
     }
 }
