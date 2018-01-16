@@ -50,7 +50,6 @@ public class Max {
      * @see Max
      */
     public int maximumOfThree(int first, int second, int third) {
-        int max = maximum(first, second);
-        return maximum(max, third);
+        return maximum(maximum(first, second), third);
     }
 }
