@@ -47,10 +47,8 @@ public class Triangle {
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
             rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
-            return rsl;
-        } else {
-            return rsl;
         }
+        return rsl;
     }
 
     /**
@@ -63,6 +61,9 @@ public class Triangle {
      */
     private boolean exist(double ab, double ac, double bc) {
 
-        return ab + ac > bc && ab + bc > ac && ac + bc > ab ? true : false;
+        if (ab + ac > bc && ab + bc > ac && ac + bc > ab) {
+            return true;
+        }
+        return false;
     }
 }
