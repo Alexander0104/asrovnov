@@ -8,7 +8,7 @@ package ru.job4j.array;
  */
 public class Square {
 
-    /**
+     /**
      * Method calculate.
      * @param bound Numeric value int, the length of the array.
      * @return the array elements in square.
