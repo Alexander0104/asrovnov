@@ -31,24 +31,10 @@ public class CheckTest {
      * result = true
      */
     @Test
-    public void WhenContainsAddStringOriginAndSubThenTrueTwoVar() {
+    public void WhenContainsAddStringOriginAndSubThenFalse() {
         Check check = new Check();
 
-        boolean result = check.contains("Java управляет интернетом", "Ja упр инт");
-        assertThat(result, is(true));
-    }
-
-    /**
-     * Test_3 contains.
-     * result = false
-     */
-    @Test
-    public void WhenContainsAddStringOriginAndSubThenFalseTreeVar() {
-        Check check = new Check();
-
-        boolean result = check.contains("Java управляет интернетом", "C++");
+        boolean result = check.contains("Привет", "еви");
         assertThat(result, is(false));
     }
-
-
 }

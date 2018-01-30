@@ -19,11 +19,13 @@ public class Check {
         char[] subArray = sub.toCharArray();
         int count = 0;
 
-        if (subArray.length>=1) {
-            for (int index=0; index!=originArray.length; index++) {
-                if (originArray[index]==subArray[count]) {
+        for (int indexOut = 0; indexOut != originArray.length; indexOut++){
+            for (int indexIn = 0; indexIn != subArray.length; indexIn++) {
+                if (originArray[indexOut] == subArray[count]) {
                     count++;
-                    if (count==subArray.length) { return true; }
+                    if (count == subArray.length) {
+                        return true;
+                    }
                 }
             }
         }
