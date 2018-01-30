@@ -32,8 +32,8 @@ public class MatrixTest {
 
         int[][] resultArray = matrix.multiple(10);
         int[][] expectArray = new int[10][10];
-        for (int indexA=1; indexA!=expectArray.length; indexA++) {
-            for (int indexB=1; indexB!=expectArray.length; indexB++){
+        for (int indexA = 1; indexA != expectArray.length; indexA++) {
+            for (int indexB = 1; indexB != expectArray.length; indexB++) {
                 expectArray[indexA][indexB] = indexA * indexB;
             }
         }

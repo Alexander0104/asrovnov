@@ -22,7 +22,7 @@ public class TurnTest {
     public void whenTurnArrayWithOddAmountOfElementsThenTurnedArray() {
         Turn tn = new Turn();
 
-        int[] date = {5 ,4, 3, 2, 1};
+        int[] date = {5, 4, 3, 2, 1};
         int[] resultArray = tn.back(date);
         int[] expectArray = {1, 2, 3, 4, 5};
         assertThat(resultArray, is(expectArray));

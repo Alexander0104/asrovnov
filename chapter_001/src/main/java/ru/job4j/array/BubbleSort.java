@@ -16,11 +16,11 @@ public class BubbleSort {
     public int[] sort(int[]array) {
         int rev;
 
-        for (int indexA=1; indexA<array.length; indexA++) {
-            for (int indexB=array.length-1; indexB>=indexA; indexB--) {
-                if (array[indexB-1]>array[indexB]){
-                    rev = array[indexB-1];
-                    array[indexB-1] = array[indexB];
+        for (int indexA = 1; indexA < array.length; indexA++) {
+            for (int indexB = array.length - 1; indexB >= indexA; indexB--) {
+                if (array[indexB - 1] > array[indexB]) {
+                    rev = array[indexB - 1];
+                    array[indexB - 1] = array[indexB];
                     array[indexB] = rev;
                 }
             }

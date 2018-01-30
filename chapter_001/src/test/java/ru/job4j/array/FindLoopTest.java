@@ -24,7 +24,7 @@ public class FindLoopTest {
         FindLoop fl = new FindLoop();
 
         int[] date = new int[5];
-        for (int index=0; index!=date.length; index++){
+        for (int index = 0; index != date.length; index++) {
             date[index] = index;
         }
         int result = fl.indexOf(date, 2);
@@ -41,7 +41,7 @@ public class FindLoopTest {
         FindLoop fl = new FindLoop();
 
         int[] date = new int[5];
-        for (int index=0; index!=date.length; index++){
+        for (int index = 0; index != date.length; index++) {
             date[index] = index;
         }
         int result = fl.indexOf(date, 8);
