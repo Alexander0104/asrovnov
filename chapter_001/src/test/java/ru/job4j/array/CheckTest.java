@@ -21,7 +21,6 @@ public class CheckTest {
     @Test
     public void WhenContainsAddStringOriginAndSubThenTrue() {
         Check check = new Check();
-
         boolean result = check.contains("Привет", "иве");
         assertThat(result, is(true));
     }
@@ -33,8 +32,7 @@ public class CheckTest {
     @Test
     public void WhenContainsAddStringOriginAndSubThenFalse() {
         Check check = new Check();
-
-        boolean result = check.contains("Привет", "еви");
+        boolean result = check.contains("Java управляет интернетом", "Ja упр инт");
         assertThat(result, is(false));
     }
 }

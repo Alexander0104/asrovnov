@@ -15,17 +15,18 @@ public class Check {
      * @return return true if origin contains sub string, false if not contains.
      */
     public boolean contains(String origin, String sub) {
-        char[] originArray = origin.toCharArray();
-        char[] subArray = sub.toCharArray();
+        char[] or = origin.toCharArray();
+        char[] su = sub.toCharArray();
         int count = 0;
-
-        for (int indexOut = 0; indexOut != originArray.length; indexOut++) {
-            for (int indexIn = 0; indexIn != subArray.length; indexIn++) {
-                if (originArray[indexOut] == subArray[count]) {
-                    count++;
-                    if (count == subArray.length) {
-                        return true;
-                    }
+        for (int out = 0; out != or.length; out++) {
+            if (or[out] == su[count]) {
+                count++;
+            } else {
+                count = 0;
+            }
+            for (int in = 0; in != su.length; in++) {
+                if (count == su.length) {
+                    return true;
                 }
             }
         }
