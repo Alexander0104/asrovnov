@@ -15,11 +15,18 @@ public class OnePlusTwo {
      */
     public int[] newArray(int[] one, int[] two) {
         int[] three = new int[one.length + two.length];
-        for (int out = 0; out!= one.length; out++) {
-            three[out] = one[out];
-            for (int in = one.length, index = 0; index != two.length; in++, index++) {
-                three[in] = two[index];
-            }
+        int i = 0, j = 0, index = 0;
+        while (i < one.length && j < two.length){
+            if (one[i] < two[j]) {
+                three[index++] = one[i++];
+            } else
+                three[index++] = two[j++];
+        }
+        while (i < one.length) {
+            three[index++] = one[i++];
+        }
+        while (j < two.length) {
+            three[index++] = two[j++];
         }
         return three;
     }

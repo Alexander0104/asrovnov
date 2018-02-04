@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
  */
 public class OnePlusTwoTest {
     /**
-     * Test newArray.
+     * Test_1 newArray.
      * result = 1, 2, 3, 4, 5, 6.
      */
     @Test
@@ -24,5 +24,18 @@ public class OnePlusTwoTest {
         int[] expected = {1, 2, 3, 4, 5, 6};
         assertThat(result, is(expected));
 
+    }
+    /**
+     * Test_2 newArray.
+     * result = 1, 1, 2, 3, 4, 5, 5, 6.
+     */
+    @Test
+    public void WhenNewArrayAddArrayOneAndTwoThanNewThirdSortArray() {
+        int[] one = {1, 2, 3, 5};
+        int[] two = {1, 4, 5, 6};
+        OnePlusTwo oneplustwo = new OnePlusTwo();
+        int[] result = oneplustwo.newArray(one, two);
+        int[] expected = {1, 1, 2, 3, 4, 5, 5, 6};
+        assertThat(result, is(expected));
     }
 }
