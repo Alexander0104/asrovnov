@@ -17,17 +17,15 @@ public class OnePlusTwo {
         int[] three = new int[one.length + two.length];
         int i = 0, j = 0, index = 0;
         while (i < one.length && j < two.length){
-            if (one[i] < two[j]) {
-                three[index++] = one[i++];
-            } else
-                three[index++] = two[j++];
+            three[index++] = one[i] < two[j] ? one[i++] :  two[j++];
         }
-        while (i < one.length) {
-            three[index++] = one[i++];
+        if (i < one.length) {
+            System.arraycopy(one, i, three, index, (one.length - i));
         }
-        while (j < two.length) {
-            three[index++] = two[j++];
+        if (j < two.length) {
+            System.arraycopy(two, j, three, index, (two.length - j));
         }
+
         return three;
     }
 }
