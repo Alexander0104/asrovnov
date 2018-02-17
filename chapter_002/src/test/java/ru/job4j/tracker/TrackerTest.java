@@ -56,12 +56,12 @@ public class TrackerTest {
      * Test findByName.
      */
     @Test
-    public void whenFindByNameAddKeyNameThenSameItem() {
+    public void whenFindByNameAddKeyNameThenNewArrayItem() {
         Tracker tracker = new Tracker();
         Item task = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
         tracker.add(task);
-        Item[] expected = tracker.findByName("Задача№1");
-        assertThat(tracker.findByName("Задача№1"), is(expected));
+        assertThat(tracker.findByName("Задача№1")[0], is(task));
+
     }
 
     /**
