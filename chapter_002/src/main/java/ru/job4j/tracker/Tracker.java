@@ -62,8 +62,8 @@ public class Tracker {
     }
 
     /**
-     * Метод findById.
-     * Метод получения заявки по id.
+     * Метод findAll.
+     * Метод получения всех заявок.
      * @return возвращает копию массива this.items без null элементов.
      */
     public Item[] findAll() {
@@ -83,7 +83,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] result = new Item[this.position];
         for (int index = 0; index != this.position; index++) {
-            if(items[index].getName().equals(key)) {
+            if(items[index] != null && items[index].getName().equals(key)) {
                 result[index] = items[index];
             }
         }
