@@ -19,7 +19,7 @@ public class CheckTest {
      * result = true
      */
     @Test
-    public void WhenContainsAddStringOriginAndSubThenTrue() {
+    public void whenContainsAddStringOriginAndSubThenTrue() {
         Check check = new Check();
         boolean result = check.contains("Привет", "иве");
         assertThat(result, is(true));
@@ -30,7 +30,7 @@ public class CheckTest {
      * result = true
      */
     @Test
-    public void WhenContainsAddStringOriginAndSubThenFalse() {
+    public void whenContainsAddStringOriginAndSubThenFalse() {
         Check check = new Check();
         boolean result = check.contains("Java управляет интернетом", "Ja упр инт");
         assertThat(result, is(false));

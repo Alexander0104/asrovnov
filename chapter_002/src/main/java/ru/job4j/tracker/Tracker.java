@@ -83,7 +83,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] result = new Item[this.position];
         for (int index = 0; index != this.position; index++) {
-            if(items[index] != null && items[index].getName().equals(key)) {
+            if (items[index] != null && items[index].getName().equals(key)) {
                 result[index] = items[index];
             }
         }
@@ -97,8 +97,8 @@ public class Tracker {
      * @param item новая заявка.
      */
     public void replace(String id, Item item) {
-        for (int index = 0; index !=this.position; index++) {
-            if(items[index].getId().equals(id)) {
+        for (int index = 0; index != this.position; index++) {
+            if (items[index].getId().equals(id)) {
                 item.setId(items[index].getId());
                 items[index] = item;
                 break;

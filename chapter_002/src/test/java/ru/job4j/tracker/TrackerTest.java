@@ -72,7 +72,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item previous = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
         tracker.add(previous);
-        Item next = new Item("Задача№1(отредактирована)","Собрать компьтер для нового сотрудника",1234L);
+        Item next = new Item("Задача№1(отредактирована)", "Собрать компьтер для нового сотрудника", 1234L);
         tracker.replace(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is(next.getName()));
     }

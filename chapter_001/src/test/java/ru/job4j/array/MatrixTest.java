@@ -13,7 +13,7 @@ public class MatrixTest {
      * comparison resultArray[9][9] =81 and expectArray[9][9] =81
      */
     @Test
-    public void WhenResultArrayIndexNineNineAndExpectArrayIndexNineNineThenEightyOne() {
+    public void whenResultArrayIndexNineNineAndExpectArrayIndexNineNineThenEightyOne() {
         Matrix matrix = new Matrix();
 
         int[][] resultArray = matrix.multiple(10);
@@ -27,7 +27,7 @@ public class MatrixTest {
      * comparison array resultArray and expectArray
      */
     @Test
-    public void WhenComparisonTwoArrayThenTrue() {
+    public void whenComparisonTwoArrayThenTrue() {
         Matrix matrix = new Matrix();
 
         int[][] resultArray = matrix.multiple(10);

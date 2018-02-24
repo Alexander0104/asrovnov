@@ -5,7 +5,7 @@ package ru.job4j.profession;
  * @version 1.0
  * @since 1.0
  */
-public class Helicopter{
+public class Helicopter {
     private String model;
 
     Helicopter(String model) {

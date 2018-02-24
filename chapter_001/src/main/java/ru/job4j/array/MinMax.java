@@ -13,7 +13,8 @@ public class MinMax {
      */
     public String search(int[] array) {
         int min, max;
-        min = max = array[0];
+        min = array[0];
+        max = array[0];
         for (int index = 0; index != array.length; index++) {
             if (array[index] < min) {
                 min = array[index];

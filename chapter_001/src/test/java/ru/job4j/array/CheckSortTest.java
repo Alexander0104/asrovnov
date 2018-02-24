@@ -16,7 +16,7 @@ public class CheckSortTest {
      * result = true
      */
     @Test
-    public void WhenCheckAddSortArrayThenTrue() {
+    public void whenCheckAddSortArrayThenTrue() {
         int[] array = new int[]{1, 2, 3, 4, 5};
         CheckSort cs = new CheckSort();
         boolean result = cs.check(array);
@@ -27,7 +27,7 @@ public class CheckSortTest {
      * result = false
      */
     @Test
-    public void WhenCheckAddNotSortArrayThenFalse() {
+    public void whenCheckAddNotSortArrayThenFalse() {
         int[] array = new int[]{3, 5, 4, 1, 2};
         CheckSort cs = new CheckSort();
         boolean result = cs.check(array);

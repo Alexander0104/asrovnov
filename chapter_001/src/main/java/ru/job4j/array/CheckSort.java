@@ -15,7 +15,7 @@ public class CheckSort {
     public boolean check(int[] array) {
         boolean value = true;
         for (int index = 1; index != array.length; index++) {
-            if (array[index-1] > array[index]) {
+            if (array[index - 1] > array[index]) {
                 value = false;
                 break;
             }

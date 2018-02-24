@@ -16,7 +16,7 @@ public class OnePlusTwo {
     public int[] newArray(int[] one, int[] two) {
         int[] three = new int[one.length + two.length];
         int i = 0, j = 0, index = 0;
-        while (i < one.length && j < two.length){
+        while (i < one.length && j < two.length) {
             three[index++] = one[i] < two[j] ? one[i++] :  two[j++];
         }
         if (i < one.length) {

@@ -21,11 +21,11 @@ public class SquareTest {
      * Test calculate.
      */
     @Test
-    public void WhenAddCalculateTenThenTheArrayElementInSquare() {
+    public void whenAddCalculateTenThenTheArrayElementInSquare() {
         Square sq = new Square();
 
         int[] testCalculate = sq.calculate(10);
-        int expectedResult[] = new int[10];
+        int[] expectedResult = new int[10];
         for (int index = 0; index != expectedResult.length; index++) {
             expectedResult[index] = (int) Math.pow(index, 2);
         }

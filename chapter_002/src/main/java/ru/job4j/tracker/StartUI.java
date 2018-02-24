@@ -41,7 +41,6 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final ConsoleInput input;
-
     /**
      * Хранилище заявок.
      */
@@ -111,9 +110,10 @@ public class StartUI {
         System.out.println("------------ Все заявки в хранилище --------------");
         Item[] allItems = tracker.findAll();
             for (int index = 0; index != allItems.length; index++) {
-                if (allItems[index] != null)
+                if (allItems[index] != null) {
                     System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s, Kомментарий: %s",
                             allItems[index].getId(), allItems[index].getName(), allItems[index].getDescription(), allItems[index].getComment()));
+                }
             }
 //        }
     }
@@ -171,14 +171,14 @@ public class StartUI {
     }
 
     private void showMenu() {
-        System.out.println("\nМеню.\n" +
-                "0. Добавить заявку.\n" +
-                "1. Показать все заявки.\n" +
-                "2. Редактировать заявку.\n" +
-                "3. Удалить заявку.\n" +
-                "4. Поиск заявки по id.\n" +
-                "5. Поиск заявок по имени.\n" +
-                "6. Выход из программы.\n");
+        System.out.println("\nМеню.\n"
+                + "0. Добавить заявку.\n" 
+                + "1. Показать все заявки.\n"
+                + "2. Редактировать заявку.\n"
+                + "3. Удалить заявку.\n"
+                + "4. Поиск заявки по id.\n"
+                + "5. Поиск заявок по имени.\n"
+                + "6. Выход из программы.\n");
     }
 
     /**

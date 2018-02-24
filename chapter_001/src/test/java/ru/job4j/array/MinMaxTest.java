@@ -16,7 +16,7 @@ public class MinMaxTest {
      * result = "1,90".
      */
     @Test
-    public void WhenAddSearchArrayThenMinAndMax() {
+    public void whenAddSearchArrayThenMinAndMax() {
         int[] array = new int[]{20, 5, 1, 90, 70};
         MinMax minmax = new MinMax();
         String result = minmax.search(array);
