@@ -14,15 +14,4 @@ public interface Input {
      * @return возвращает строку который ввел пользователь.
      */
     String ask(String question);
-
-    String enter();
-
-    /**
-     * Метод ask.
-     * @param question вопрос
-     * @return возвращает строку который ввел пользователь.
-     */
-    long date(String question);
-
-
 }

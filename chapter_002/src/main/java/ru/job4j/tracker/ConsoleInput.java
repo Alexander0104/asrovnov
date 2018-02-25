@@ -20,18 +20,4 @@ public class ConsoleInput implements Input {
         System.out.print(question);
         return scanner.nextLine();
     }
-
-    public String enter() {
-        return scanner.nextLine();
-    }
-
-    /**
-     * Метод ask.
-     * @param question вопрос
-     * @return возвращает строку который ввел пользователь.
-     */
-    public long date(String question) {
-        System.out.print(question);
-        return scanner.nextLong();
-    }
 }

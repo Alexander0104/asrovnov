@@ -89,8 +89,8 @@ public class StartUI {
         System.out.println("------------ Добавление новой языки --------------");
         String name = this.input.ask("Введите имя заявки : ");
         String description = this.input.ask("Введите описание заявки : ");
-        long create = input.date("Введите дату создания заявки : ");
-        input.enter();
+        String create = input.ask("Введите дату создания заявки : ");
+//        input.enter();
         String comment = this.input.ask("Введите комментарий к заявке(если нет комментария нажмите Enter) : ");
         if (comment.equals("")) {
             Item item = new Item(name, description, create);
@@ -111,8 +111,8 @@ public class StartUI {
         Item[] allItems = tracker.findAll();
             for (int index = 0; index != allItems.length; index++) {
                 if (allItems[index] != null) {
-                    System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s, Kомментарий: %s",
-                            allItems[index].getId(), allItems[index].getName(), allItems[index].getDescription(), allItems[index].getComment()));
+                    System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s, Дата создания: %s,  Kомментарий: %s",
+                            allItems[index].getId(), allItems[index].getName(), allItems[index].getDescription(), allItems[index].getCreate(), allItems[index].getComment()));
                 }
             }
 //        }
@@ -126,9 +126,9 @@ public class StartUI {
         String id = this.input.ask("Введите ID заявки которую хотите заменить: ");
         String name = this.input.ask("Введите имя новой заявки : ");
         String description = this.input.ask("Введите описание новой заявки : ");
-        long create = input.date("Введите дату создания заявки : ");
-        input.enter();
-        String comment = this.input.ask("Введите комментарий к новой заявке(если нет комментария нажмите Enter) : ");
+        String create = this.input.ask("Введите дату создания заявки : ");
+//        input.enter();
+        String comment = this.input.ask("\nВведите комментарий к новой заявке(если нет комментария нажмите Enter) : ");
         if (comment.equals("")) {
             Item item = new Item(name, description, create);
             this.tracker.replace(id, item);

@@ -15,7 +15,7 @@ public class Item {
     private String id;
     public String name;
     public String description;
-    public long create;
+    public String create;
     public String comment;
 
     /**
@@ -30,7 +30,7 @@ public class Item {
      * @param description описание заявки.
      * @param create время создание заявки.
      */
-    public Item(String name, String description, long create) {
+    public Item(String name, String description, String create) {
         this.name = name;
         this.description = description;
         this.create = create;
@@ -43,7 +43,7 @@ public class Item {
      * @param create время создание заявки.
      * @param comment комментарий к заявке.
      */
-    public Item(String name, String description, long create, String comment) {
+    public Item(String name, String description, String create, String comment) {
         this.name = name;
         this.description = description;
         this.create = create;
@@ -70,7 +70,7 @@ public class Item {
      * Метод getCreate.
      * @return возвращает время создания заявки.
      */
-    public long getCreate() {
+    public String getCreate() {
         return this.create;
     }
 

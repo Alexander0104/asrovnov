@@ -21,7 +21,7 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
+        Item item = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(item);
         assertThat(tracker.findAll()[0], is(item));
     }
@@ -32,7 +32,7 @@ public class TrackerTest {
     @Test
     public void whenAddIdInFindByIdThenTrackerGetItem() {
         Tracker tracker = new Tracker();
-        Item task = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
+        Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(task);
         assertThat(tracker.findById(task.getId()), is(task));
     }
@@ -44,8 +44,8 @@ public class TrackerTest {
     public void whenAddNewItemThenTrackerGetAllItem() {
         Tracker tracker = new Tracker();
         Item[] tasks = new Item[2];
-        tasks[0] = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
-        tasks[1] = new Item("Задача№2", "Исправить баг в программе", 12L, "Не срочно");
+        tasks[0] = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
+        tasks[1] = new Item("Задача№2", "Исправить баг в программе", "12 : 00", "Не срочно");
         for (int index = 0; index != tasks.length; index++) {
             tracker.add(tasks[index]);
         }
@@ -58,7 +58,7 @@ public class TrackerTest {
     @Test
     public void whenFindByNameAddKeyNameThenNewArrayItem() {
         Tracker tracker = new Tracker();
-        Item task = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
+        Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(task);
         assertThat(tracker.findByName("Задача№1")[0], is(task));
 
@@ -70,9 +70,9 @@ public class TrackerTest {
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
+        Item previous = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(previous);
-        Item next = new Item("Задача№1(отредактирована)", "Собрать компьтер для нового сотрудника", 1234L);
+        Item next = new Item("Задача№1(отредактирована)", "Собрать компьтер для нового сотрудника", "12 : 00");
         tracker.replace(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is(next.getName()));
     }
@@ -83,7 +83,7 @@ public class TrackerTest {
     @Test
     public void whenDeleteAddIdThenSameItemDelete() {
         Tracker tracker = new Tracker();
-        Item task = new Item("Задача№1", "Отремонтировать компьютер", 10L, "В срочном порядке");
+        Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(task);
         tracker.delete(task.getId());
         Item[] expected = new Item[1];
