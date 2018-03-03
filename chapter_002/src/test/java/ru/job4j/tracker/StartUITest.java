@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 import ru.job4j.models.Item;
 
 import org.junit.Test;
-
+import org.junit.Before;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,13 +16,22 @@ import static org.junit.Assert.assertThat;
  */
 public class StartUITest {
 
+    static Tracker tracker;
+    static Item item;
+
+    @Before
+    public void beforeTest() {
+        tracker = new Tracker();
+        item = new Item("Задача№1", "Починить компьтер", "23.02.2018", "Срочно");
+        tracker.add(item);
+    }
+
     /**
      * Test
      * 0. Добавить заявку.
      */
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "Задача№1", "Починить компьтер", "23.02.2018", "Срочно", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("Задача№1"));
@@ -30,14 +39,13 @@ public class StartUITest {
 
     /**
      * Test
-     * 1. Добавить заявку.
+     * 1. Показать все заявки.
      */
     @Test
     public void whenUserAddMoreItemThenTrackerShowAllItemName() {
-        Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "Задача№2", "Протестировать ПО", "23.02.2018", "Срочно", "1", "6"});
+        Input input = new StubInput(new String[]{"0", "Задача№1", "Починить компьтер", "23.02.2018", "Срочно", "1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("Задача№2"));
+        assertThat(tracker.findAll()[0].getName(), is("Задача№1"));
     }
 
     /**
@@ -46,11 +54,9 @@ public class StartUITest {
      */
     @Test
     public void whenUserAddItemAndEditThenTrackerShowNewItemName() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Задача№3", "Собрать компьютер", "23.02.2018", "Срочно"));
-        Input input = new StubInput(new String[]{"2", item.getId(), "Задача№3.1", "Установить ПО на новый компьютер", "23.02.2018", "Срочно", "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "Задача№1.1", "Установить ПО на новый компьютер", "23.02.2018", "Срочно", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("Задача№3.1"));
+        assertThat(tracker.findAll()[0].getName(), is("Задача№1.1"));
     }
 
     /**
@@ -59,8 +65,6 @@ public class StartUITest {
      */
     @Test
     public void whenUserDeleteItemThenTrackerHasItemNull() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Задача№4", "Настроить интернет", "23.02.2018", "Срочно"));
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
         Item expected = null;
@@ -73,11 +77,9 @@ public class StartUITest {
      */
     @Test
     public void whenUserFindItemByIdThenThenTrackerHasItemDescription() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Задача№5", "Протестировать новый компьтер", "23.02.2018", "Срочно"));
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getDescription(), is("Протестировать новый компьтер"));
+        assertThat(tracker.findAll()[0].getDescription(), is("Починить компьтер"));
     }
 
     /**
@@ -86,9 +88,8 @@ public class StartUITest {
      */
     @Test
     public void whenUserFindItemByNameThenTrackerHasNameItem() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Задача№6", "Нет задачь", "23.02.2018"));
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
-        assertThat(tracker.findAll()[0].getName(), is("Задача№6"));
+        new StartUI(input, tracker).init();
+        assertThat(tracker.findAll()[0].getName(), is("Задача№1"));
     }
 }
