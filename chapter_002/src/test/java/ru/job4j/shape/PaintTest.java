@@ -1,6 +1,8 @@
 package ru.job4j.shape;
 
 import org.junit.Test;
+import org.junit.After;
+import org.junit.Before;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.hamcrest.core.Is.is;
@@ -10,19 +12,37 @@ import static org.junit.Assert.assertThat;
  * Test class Paint.
  *
  * @author Alexander Rovnov
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class PaintTest {
+
+    private final PrintStream stdout = System.out;
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    /**
+     * выполняет метод, то запуска тесты.
+     */
+    @Before
+    public void loadOutput() {
+        System.out.println("execute before method");
+        System.setOut(new PrintStream(this.out));
+    }
+
+    /**
+     * выполняет метод, после запуска теста.
+     */
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+        System.out.println("execute after method");
+    }
 
     /**
      * Test draw(new Square).
      */
     @Test
     public void whenDrawSquare() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         new Paint().draw(new Square());
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
                                                                 .append("++++")
@@ -33,7 +53,6 @@ public class PaintTest {
                                                                 .toString()
                 )
         );
-        System.setOut(stdout);
     }
 
     /**
@@ -41,9 +60,6 @@ public class PaintTest {
      */
     @Test
     public void whenDrawTriangle() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         new Paint().draw(new Triangle());
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
                                                                 .append("   +   ")
@@ -54,6 +70,5 @@ public class PaintTest {
                                                                 .toString()
                 )
         );
-        System.setOut(stdout);
     }
 }
