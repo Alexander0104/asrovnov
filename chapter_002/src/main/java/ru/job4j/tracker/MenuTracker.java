@@ -130,7 +130,17 @@ public class MenuTracker {
                 System.out.println(action.info());
             }
         }
+    }
 
+    /**
+     * Метод создания диапазона ключей для перегруженного метода ask.
+     */
+    public int[] getRange() {
+        int[] range = new int[actions.length];
+        for (int index = 0; index != actions.length; index++) {
+            range[index] = index;
+        }
+        return range;
     }
 
     /**

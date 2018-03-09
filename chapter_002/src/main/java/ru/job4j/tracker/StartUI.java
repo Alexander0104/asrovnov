@@ -5,8 +5,8 @@ import ru.job4j.models.Item;
 /**
  * class StartUI.
  * @author Alexander Rovnov.
- * @version 1.0
- * @since 1.0
+ * @version 1.2
+ * @since 1.2
  */
 public class StartUI {
 //    /**
@@ -37,6 +37,7 @@ public class StartUI {
 //     * Константа для выхода из цикла.
 //     */
 //    private static final String EXIT = "6";
+
     /**
      * Получение данных от пользователя.
      */
@@ -65,7 +66,7 @@ public class StartUI {
         menu.fillActions();
         while (!exit) {
             menu.show();
-            int key = Integer.valueOf(input.ask("\nВведите пункт меню : "));
+            int key = this.input.ask("\nВведите пункт меню : ", menu.getRange());
             menu.select(key);
             if ("6".equals(String.valueOf(key))) {
                 exit = true;
@@ -194,7 +195,7 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
 
