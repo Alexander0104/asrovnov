@@ -6,12 +6,16 @@ import ru.job4j.models.*;
  * class EditItem.
  * Класс реализует редактирование заявки в хранилище.
  */
-class EditItem implements UserAction {
+class EditItem extends BaseAction {
 
-    @Override
-    public int key() {
-        return 2;
+    public EditItem(int key, String name) {
+        super(key, name);
     }
+
+//    @Override
+//    public int key() {
+//        return 2;
+//    }
 
     @Override
     public void execute(Input input, Tracker tracker) {
@@ -30,21 +34,21 @@ class EditItem implements UserAction {
         }
     }
 
-    @Override
-    public String info() {
-        return String.format("%s. %s", this.key(), "Редактировать заявку");
-    }
+//    @Override
+//    public String info() {
+//        return String.format("%s. %s", this.key(), "Редактировать заявку");
+//    }
 }
+
 
 /**
  * class FindIdItem.
  * Класс реализует поиск заявки в хранилище по ID.
  */
-class FindIdItem implements UserAction {
+class FindIdItem extends BaseAction {
 
-    @Override
-    public int key() {
-        return 4;
+    public FindIdItem(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -54,30 +58,20 @@ class FindIdItem implements UserAction {
         System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s", result.getId(), result.getName(), result.getDescription()));
     }
 
-    @Override
-    public String info() {
-        return String.format("%s. %s", this.key(), "Поиск заявки по id.");
-    }
 }
 
 /**
  * class Exit.
  * Класс реализует выход из MenuTracker.
  */
-class Exit implements UserAction {
+class Exit extends BaseAction {
 
-    @Override
-    public int key() {
-        return 6;
+    public Exit(int key, String name) {
+        super(key, name);
     }
 
     @Override
     public void execute(Input input, Tracker tracker) {
-    }
-
-    @Override
-    public String info() {
-        return String.format("%s. %s", this.key(), "Выход из программы.");
     }
 }
 
@@ -105,13 +99,13 @@ public class MenuTracker {
      * Метод заполнения массива actions.
      */
     public void fillActions() {
-        this.actions[0] = new AddItem();
-        this.actions[1] = new ShowAllItems();
-        this.actions[2] = new EditItem();
-        this.actions[3] = new DeleteItem();
-        this.actions[4] = new FindIdItem();
-        this.actions[5] = new FindNameItem();
-        this.actions[6] = new Exit();
+        this.actions[0] = new AddItem(0, "Добавить заявку.");
+        this.actions[1] = new ShowAllItems(1, "Показать все заявки.");
+        this.actions[2] = new EditItem(2, "Редактировать заявку.");
+        this.actions[3] = new DeleteItem(3, "Удалить заявку.");
+        this.actions[4] = new FindIdItem(4, "Поиск заявки по id.");
+        this.actions[5] = new FindNameItem(5, "Поиск заявок по имени.");
+        this.actions[6] = new Exit(6, "Выход из программы.");
     }
 
     /**
@@ -147,11 +141,10 @@ public class MenuTracker {
      * class AddItem.
      * Класс реализует добавления новой заявки в хранилище.
      */
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseAction {
 
-        @Override
-        public int key() {
-            return 0;
+        public AddItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -173,22 +166,18 @@ public class MenuTracker {
 
         }
 
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Добавить заявку.");
-        }
     }
 
     /**
      * class ShowAllItems.
      * Класс реализует вывод всех заявок в хранилище.
      */
-    private static class ShowAllItems implements UserAction {
+    private static class ShowAllItems extends BaseAction {
 
-        @Override
-        public int key() {
-            return 1;
+        public ShowAllItems(int key, String name) {
+            super(key, name);
         }
+
 
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -202,17 +191,12 @@ public class MenuTracker {
             }
         }
 
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Показать все заявки.");
-        }
     }
 
-    class DeleteItem implements UserAction {
+    class DeleteItem extends BaseAction {
 
-        @Override
-        public int key() {
-            return 3;
+        public DeleteItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -220,22 +204,16 @@ public class MenuTracker {
             String id = input.ask("Для удаления заявки введеите ее ID : ");
             tracker.delete(id);
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Удалить заявку.");
-        }
     }
 
     /**
      * class FindNameItem .
      * Класс реализует поиск заявок в хранилище по имени.
      */
-    private static class FindNameItem implements UserAction {
+    private static class FindNameItem extends BaseAction {
 
-        @Override
-        public int key() {
-            return 5;
+        public FindNameItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -248,11 +226,6 @@ public class MenuTracker {
                             result[index].getId(), result[index].getName(), result[index].getDescription()));
                 }
             }
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Поиск заявок по имени.");
         }
     }
 }
