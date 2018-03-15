@@ -46,4 +46,14 @@ public class Cell {
         }
         return y == cell.y;
     }
+
+    /**
+     * Метод переопределяющий hashCode.
+     */
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
+    }
 }
