@@ -29,10 +29,10 @@ public class PhoneDictionary {
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
         for (int index = 0; index != this.persons.size(); index++) {
-            if (this.persons.get(index).getName().contains(key) ||
-                    this.persons.get(index).getSurname().contains(key) ||
-                    this.persons.get(index).getPhone().contains(key) ||
-                    this.persons.get(index).getAddress().contains(key)) {
+            if (this.persons.get(index).getName().contains(key)
+                    || this.persons.get(index).getSurname().contains(key)
+                    || this.persons.get(index).getPhone().contains(key)
+                    || this.persons.get(index).getAddress().contains(key)) {
                 result.add(persons.get(index));
             }
         }
