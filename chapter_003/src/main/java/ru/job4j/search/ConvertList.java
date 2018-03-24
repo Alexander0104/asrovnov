@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * class ConvertList.
  * Convert two dimensional array to ArrayList and vice versa.
  * @author Alexander Rovnov.
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class ConvertList {
 
@@ -50,4 +50,21 @@ public class ConvertList {
         }
         return result;
     }
+
+    /**
+     * метод convert.
+     * метод проходитт по вем элемента всех массивов в списке
+     * list и добавляет их в один общий list<Integer>
+     * @param list список с массивами.
+     * @return новый список.
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        for (int[] i : list) {
+            for (int j : i) {
+                result.add(j);
+            }
+        }
+        return result;
+     }
 }

@@ -12,8 +12,8 @@ import static org.junit.Assert.assertThat;
  * Test class ConvertList.
  *
  * @author Alexander Rovnov
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class ConvertListTest {
 
@@ -66,5 +66,19 @@ public class ConvertListTest {
                 {7, 8, 0}
         };
         assertThat(convertList.toArray(list, 3), is(expected));
+    }
+
+    /**
+     * Test.
+     * convert.
+     */
+    @Test
+    public void whenCovertAddListArraysThenNewJoinedListInteger() {
+        List<int[]> list = new ArrayList<>();
+        list.add(new int[]{1, 2, 3});
+        list.add(new int[]{4, 5, 6, 7, 8});
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> result = convertList.convert(list);
+        assertThat(result, is(expected));
     }
 }
