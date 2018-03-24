@@ -12,8 +12,8 @@ import static org.junit.Assert.assertThat;
  * Test class ConvertList.
  *
  * @author Alexander Rovnov
- * @version 1.1
- * @since 1.1
+ * @version 1.2
+ * @since 1.2
  */
 public class ConvertListTest {
 
@@ -74,10 +74,10 @@ public class ConvertListTest {
      */
     @Test
     public void whenCovertAddListArraysThenNewJoinedListInteger() {
-        List<int[]> list = new ArrayList<>();
-        list.add(new int[]{1, 2, 3});
-        list.add(new int[]{4, 5, 6, 7, 8});
-        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<int[][]> list = new ArrayList<>();
+        list.add(new int[][]{{1, 2, 3}, {4, 5, 6}});
+        list.add(new int[][]{{7, 8}, {9, 10}});
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         List<Integer> result = convertList.convert(list);
         assertThat(result, is(expected));
     }
