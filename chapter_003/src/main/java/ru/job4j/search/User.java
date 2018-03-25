@@ -58,9 +58,9 @@ public class User {
      */
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                "city='" + city + '\'' +
-                '}';
+        return "User{"
+                + "name='" + name + '\''
+                + "city='" + city + '\''
+                + '}';
     }
 }

@@ -1,29 +1,39 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import org.junit.Before;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 import ru.job4j.models.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Test class Tracker.
  *
  * @author Alexander Rovnov
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class TrackerTest {
+
+    static Tracker tracker;
+
+    @Before
+    public void beforeTest() {
+        tracker = new Tracker();
+    }
 
     /**
      * Test add.
      */
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
-        tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
+        tracker.add(task);
+        assertThat(tracker.findAll().get(0), is(task));
     }
 
     /**
@@ -31,7 +41,6 @@ public class TrackerTest {
      */
     @Test
     public void whenAddIdInFindByIdThenTrackerGetItem() {
-        Tracker tracker = new Tracker();
         Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(task);
         assertThat(tracker.findById(task.getId()), is(task));
@@ -42,12 +51,11 @@ public class TrackerTest {
      */
     @Test
     public void whenAddNewItemThenTrackerGetAllItem() {
-        Tracker tracker = new Tracker();
-        Item[] tasks = new Item[2];
-        tasks[0] = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
-        tasks[1] = new Item("Задача№2", "Исправить баг в программе", "12 : 00", "Не срочно");
-        for (int index = 0; index != tasks.length; index++) {
-            tracker.add(tasks[index]);
+        List<Item> tasks = new ArrayList<Item>();
+        tasks.add(new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке"));
+        tasks.add(new Item("Задача№2", "Исправить баг в программе", "12 : 00", "Не срочно"));
+        for (Item task : tasks) {
+            tracker.add(task);
         }
         assertThat(tracker.findAll(), is(tasks));
     }
@@ -57,10 +65,9 @@ public class TrackerTest {
      */
     @Test
     public void whenFindByNameAddKeyNameThenNewArrayItem() {
-        Tracker tracker = new Tracker();
         Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(task);
-        assertThat(tracker.findByName("Задача№1")[0], is(task));
+        assertThat(tracker.findByName("Задача№1").get(0), is(task));
 
     }
 
@@ -69,7 +76,6 @@ public class TrackerTest {
      */
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
         Item previous = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(previous);
         Item next = new Item("Задача№1(отредактирована)", "Собрать компьтер для нового сотрудника", "12 : 00");
@@ -82,12 +88,10 @@ public class TrackerTest {
      */
     @Test
     public void whenDeleteAddIdThenSameItemDelete() {
-        Tracker tracker = new Tracker();
         Item task = new Item("Задача№1", "Отремонтировать компьютер", "12 : 00", "В срочном порядке");
         tracker.add(task);
         tracker.delete(task.getId());
-        Item[] expected = new Item[1];
-        expected[0] = null;
+        List<Item> expected = new ArrayList<Item>();
         assertThat(tracker.findAll(), is(expected));
     }
 }

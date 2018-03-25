@@ -6,13 +6,14 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import java.util.ArrayList;
 
 /**
  * Test class StartUI.
  *
  * @author Alexander Rovnov
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class StartUITest {
 
@@ -34,7 +35,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "Задача№1", "Починить компьтер", "23.02.2018", "Срочно", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("Задача№1"));
+        assertThat(tracker.findAll().get(0).getName(), is("Задача№1"));
     }
 
     /**
@@ -45,7 +46,7 @@ public class StartUITest {
     public void whenUserAddMoreItemThenTrackerShowAllItemName() {
         Input input = new StubInput(new String[]{"0", "Задача№1", "Починить компьтер", "23.02.2018", "Срочно", "1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("Задача№1"));
+        assertThat(tracker.findAll().get(0).getName(), is("Задача№1"));
     }
 
     /**
@@ -56,7 +57,7 @@ public class StartUITest {
     public void whenUserAddItemAndEditThenTrackerShowNewItemName() {
         Input input = new StubInput(new String[]{"2", item.getId(), "Задача№1.1", "Установить ПО на новый компьютер", "23.02.2018", "Срочно", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("Задача№1.1"));
+        assertThat(tracker.findAll().get(0).getName(), is("Задача№1.1"));
     }
 
     /**
@@ -67,8 +68,7 @@ public class StartUITest {
     public void whenUserDeleteItemThenTrackerHasItemNull() {
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        Item expected = null;
-        assertThat(tracker.findAll()[0], is(expected));
+        assertThat(tracker.findAll(), is(new ArrayList<Item>()));
     }
 
     /**
@@ -79,7 +79,7 @@ public class StartUITest {
     public void whenUserFindItemByIdThenThenTrackerHasItemDescription() {
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getDescription(), is("Починить компьтер"));
+        assertThat(tracker.findAll().get(0).getDescription(), is("Починить компьтер"));
     }
 
     /**
@@ -90,6 +90,6 @@ public class StartUITest {
     public void whenUserFindItemByNameThenTrackerHasNameItem() {
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("Задача№1"));
+        assertThat(tracker.findAll().get(0).getName(), is("Задача№1"));
     }
 }

@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import ru.job4j.models.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * class EditItem.
  * Класс реализует редактирование заявки в хранилище.
@@ -26,11 +29,9 @@ class EditItem extends BaseAction {
         String create = input.ask("Введите дату создания заявки : ");
         String comment = input.ask("Введите комментарий к новой заявке(если нет комментария нажмите Enter) : ");
         if (comment.equals("")) {
-            Item item = new Item(name, description, create);
-            tracker.replace(id, item);
+            tracker.replace(id, new Item(name, description, create));
         } else {
-            Item item = new Item(name, description, create, comment);
-            tracker.replace(id, item);
+            tracker.replace(id, new Item(name, description, create, comment));
         }
     }
 
@@ -182,11 +183,18 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Все заявки в хранилище --------------");
-            Item[] allItems = tracker.findAll();
-            for (int index = 0; index != allItems.length; index++) {
-                if (allItems[index] != null) {
+//            Item[] allItems = tracker.findAll();
+//            for (int index = 0; index != allItems.length; index++) {
+//                if (allItems[index] != null) {
+//                    System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s, Дата создания: %s,  Kомментарий: %s",
+//                            allItems[index].getId(), allItems[index].getName(), allItems[index].getDescription(), allItems[index].getCreate(), allItems[index].getComment()));
+//                }
+//            }
+            List<Item> allItems = tracker.findAll();
+            for (Item item : allItems) {
+                if (item != null) {
                     System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s, Дата создания: %s,  Kомментарий: %s",
-                            allItems[index].getId(), allItems[index].getName(), allItems[index].getDescription(), allItems[index].getCreate(), allItems[index].getComment()));
+                            item.getId(), item.getName(), item.getDescription(), item.getCreate(), item.getComment()));
                 }
             }
         }
@@ -219,11 +227,18 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String key = input.ask("Введите имя заявки которую хотите найти: ");
-            Item[] result = tracker.findByName(key);
-            for (int index = 0; index != result.length; index++) {
-                if (result[index] != null) {
+//            Item[] result = tracker.findByName(key);
+//            for (int index = 0; index != result.length; index++) {
+//                if (result[index] != null) {
+//                    System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s",
+//                            result[index].getId(), result[index].getName(), result[index].getDescription()));
+//                }
+//            }
+            List<Item> result = tracker.findByName(key);
+            for (Item item : result) {
+                if (item != null) {
                     System.out.println(String.format("ID заявки: %s, Имя заявки: %s, Описание: %s",
-                            result[index].getId(), result[index].getName(), result[index].getDescription()));
+                            item.getId(), item.getName(), item.getDescription()));
                 }
             }
         }
