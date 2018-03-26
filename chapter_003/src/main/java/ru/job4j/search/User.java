@@ -6,20 +6,31 @@ package ru.job4j.search;
  * @version 1.0
  * @since 1.0
  */
-public class User {
+public class User implements Comparable<User> {
 
     /**
      * поля инициализируют User.
      */
     private int id;
     private String name;
+    private int age;
     private String city;
 
     /**
-     * конструктор класса User.
-     * @param id имя.
-     * @param name фамилия.
-     * @param city телефон.
+     * конструктор класса User с 2-мя параметрами.
+     * @param name имя.
+     * @param age возраст пользователя.
+     */
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    /**
+     * конструктор класса User с 3-мя параметрами.
+     * @param id пользователя.
+     * @param name имя.
+     * @param city город.
      */
     public User(int id, String name, String city) {
         this.id = id;
@@ -53,7 +64,15 @@ public class User {
     }
 
     /**
-     * переопределенный метод toString.
+     * метод getAge.
+     * @return возраст.
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Переопределенный метод toString.
      * @return возвращает строковое представление объект User.
      */
     @Override
@@ -61,6 +80,14 @@ public class User {
         return "User{"
                 + "name='" + name + '\''
                 + "city='" + city + '\''
-                + '}';
+                + "age='" + age + '}';
+    }
+
+    /**
+     * Переопределенный метод compareTo.
+     */
+    @Override
+    public int compareTo(User o) {
+        return Integer.compare(getAge(), o.getAge());
     }
 }
