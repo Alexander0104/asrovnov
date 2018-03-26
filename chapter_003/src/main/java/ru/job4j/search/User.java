@@ -88,6 +88,6 @@ public class User implements Comparable<User> {
      */
     @Override
     public int compareTo(User o) {
-        return Integer.compare(getAge(), o.getAge());
+        return Integer.compare(this.getAge(), o.getAge());
     }
 }
