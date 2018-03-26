@@ -15,15 +15,13 @@ import java.util.Random;
 public class Tracker {
 
     /**
-     * Массив для хранение заявок.
+     * Срисок для хранение заявок.
      */
-//    private Item[] items = new Item[100];
     private List<Item> items = new ArrayList<Item>();
 
     /**
      * Указатель ячейки для новой заявки.
      */
-    private int position = 0;
     private static final Random RN = new Random();
 
     /**
@@ -72,13 +70,6 @@ public class Tracker {
      * Метод получения всех заявок.
      * @return возвращает копию массива this.items без null элементов.
      */
-//    public Item[] findAll() {
-//        Item[] result = new Item[this.position];
-//        for (int index = 0; index != this.position; index++) {
-//            result[index] = this.items[index];
-//        }
-//        return result;
-//    }
     public List<Item> findAll() {
         List<Item> result = new ArrayList<Item>();
         for (Item item : items) {
@@ -93,15 +84,6 @@ public class Tracker {
      * @param key имя заявки
      * @return возвращает копию массива this.items с key(именами).
      */
-//    public Item[] findByName(String key) {
-//        Item[] result = new Item[this.position];
-//        for (int index = 0; index != this.position; index++) {
-//            if (items[index] != null && items[index].getName().equals(key)) {
-//                result[index] = items[index];
-//            }
-//        }
-//        return result;
-//    }
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<Item>();
         for (Item item : items) {
@@ -118,15 +100,6 @@ public class Tracker {
      * @param id заявки
      * @param item новая заявка.
      */
-//    public void replace(String id, Item item) {
-//        for (int index = 0; index != this.position; index++) {
-//            if (items[index].getId().equals(id)) {
-//                item.setId(items[index].getId());
-//                items[index] = item;
-//                break;
-//            }
-//        }
-//    }
     public void replace(String id, Item item) {
         for (Item i : items) {
             if (i.getId().equals(id)) {
@@ -138,23 +111,11 @@ public class Tracker {
         }
     }
 
-
     /**
      * Метод delete.
      * Метод удаления заявки по id.
      * @param id заявки
      */
-//    public void delete(String id) {
-//        Item[] result = new Item[items.length];
-//        for (int index = 0; index != this.position; index++) {
-//            if (items[index] != null && this.items[index].getId().equals(id)) {
-//                System.arraycopy(items, 0, result, 0, index);
-//                System.arraycopy(items, index + 1, result, index, items.length - index - 1);
-//                items = result;
-//                break;
-//            }
-//        }
-//    }
     public void delete(String id) {
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
