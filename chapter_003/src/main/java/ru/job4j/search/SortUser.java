@@ -16,7 +16,7 @@ public class SortUser {
      * @param users список.
      * @return TreeSet отсартированный по возрасту пользователей.
      */
-    Set<User> sort(List<User> users) {
+    public Set<User> sort(List<User> users) {
         return new TreeSet<>(users);
     }
 
