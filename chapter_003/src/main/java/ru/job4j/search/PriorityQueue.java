@@ -31,17 +31,18 @@ public class PriorityQueue {
      * @return возвращает приоритетную задачу.
      */
     public Task take() {
-        Collections.sort(tasks, new Comparator<Task>() {
-            @Override
-            public int compare(Task o1, Task o2) {
-                if (o1.getPriority() > o2.getPriority()) {
-                    return 1;
-                } else if (o1.getPriority() < o2.getPriority()) {
-                    return -1;
+        Task obj1;
+        Task obj2;
+        for (int i = 0; i < tasks.size(); i++) {
+            for (int j = tasks.size() - 1; j > i; j--) {
+                obj1 = tasks.get(i);
+                obj2 = tasks.get(j);
+                if (obj1.getPriority() > obj2.getPriority()) {
+                    tasks.set(j, obj1);
+                    tasks.set(i, obj2);
                 }
-                return 0;
             }
-        });
+        }
         return this.tasks.poll();
     }
 }
