@@ -23,6 +23,13 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
+        int size = this.tasks.size();
+        for (int index = 0; index != size; index++) {
+            if (task.getPriority() <= tasks.get(index).getPriority()) {
+                this.tasks.add(index, task);
+                break;
+            }
+        }
         this.tasks.add(task);
     }
 
@@ -31,18 +38,6 @@ public class PriorityQueue {
      * @return возвращает приоритетную задачу.
      */
     public Task take() {
-        Task obj1;
-        Task obj2;
-        for (int i = 0; i < tasks.size(); i++) {
-            for (int j = tasks.size() - 1; j > i; j--) {
-                obj1 = tasks.get(i);
-                obj2 = tasks.get(j);
-                if (obj1.getPriority() > obj2.getPriority()) {
-                    tasks.set(j, obj1);
-                    tasks.set(i, obj2);
-                }
-            }
-        }
-        return this.tasks.poll();
+        return tasks.poll();
     }
 }

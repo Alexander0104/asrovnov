@@ -19,11 +19,17 @@ public class ListCompare implements Comparator<String> {
      */
     @Override
     public int compare(String left, String right) {
-        for (int index = 0; index < left.length() && index < right.length(); index++) {
-            if (left.charAt(index) != right.charAt(index)) {
-                return left.charAt(index) < right.charAt(index) ? -1 : 1;
+        int size = Math.min(left.length(), right.length());
+        int result = 0;
+        for (int index = 0; index < size; index++) {
+            result = Integer.compare(left.charAt(index), right.charAt(index));
+            if (result != 0) {
+                break;
             }
         }
-        return Integer.compare(left.length(), right.length());
+        if (result == 0 && left.length() != right.length()) {
+            result = Integer.compare(left.length(), right.length());
+        }
+        return result;
     }
 }
