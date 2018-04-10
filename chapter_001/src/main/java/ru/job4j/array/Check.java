@@ -17,19 +17,17 @@ public class Check {
     public boolean contains(String origin, String sub) {
         char[] or = origin.toCharArray();
         char[] su = sub.toCharArray();
-        int count = 0;
-        for (int out = 0; out != or.length; out++) {
-            if (or[out] == su[count]) {
-                count++;
-            } else {
-                count = 0;
-            }
-            for (int in = 0; in != su.length; in++) {
-                if (count == su.length) {
+        for (int out = 0; out <= (or.length - su.length); out++) {
+            for (int in = 0; in < or.length; in++) {
+                if (or[out + in] != su[in]) {
+                    break;
+                }
+                if (in == su.length - 1) {
                     return true;
                 }
             }
         }
         return false;
     }
+
 }
