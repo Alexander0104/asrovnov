@@ -3,7 +3,7 @@ package ru.job4j.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class PrimeIterator implements Iterator {
+public class PrimeIterator implements Iterator<Integer> {
 
     /**
      * Массив для хранения элементов.
@@ -45,7 +45,7 @@ public class PrimeIterator implements Iterator {
      * @return возвращает следующий элемент в итерации.
      */
     @Override
-    public Object next() {
+    public Integer next() {
         hasNext();
         if (this.index >= this.array.length) {
             throw new NoSuchElementException();
