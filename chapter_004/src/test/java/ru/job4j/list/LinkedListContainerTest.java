@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
  */
 public class LinkedListContainerTest {
 
-    private static SimpleContainer<Integer> linkedListContainer;
+    private static LinkedListContainer<Integer> linkedListContainer;
 
     @Before
     public void beforeTest() {
@@ -36,6 +36,20 @@ public class LinkedListContainerTest {
 
     /**
      * Test_02.
+     * removeFirst и removeLast.
+     */
+    @Test
+    public void whenAddThreeElementsThanDelete() {
+        linkedListContainer.add(1);
+        linkedListContainer.add(2);
+        linkedListContainer.add(3);
+        assertThat(linkedListContainer.removeFirst(), is(1));
+        assertThat(linkedListContainer.removeLast(), is(3));
+        assertThat(linkedListContainer.get(0), is(2));
+    }
+
+    /**
+     * Test_03.
      */
     @Test
     public void whenInvokeHasNextThanCheckTheGetResultsIsGoingToBeTrue() {
@@ -46,7 +60,7 @@ public class LinkedListContainerTest {
     }
 
     /**
-     * Test_03.
+     * Test_04.
      */
     @Test
     public void whenInvokeHasNextAndNextThanCheckTheGetResultsIsGoingToBeFalse() {
@@ -59,11 +73,11 @@ public class LinkedListContainerTest {
     }
 
     /**
-     * Test_04.
+     * Test_05.
      */
     @Test
     public void whenNotAddElementsInvokeHasNextThanFalse() {
-        SimpleContainer<Integer> linkedListContainer = new LinkedListContainer<>();
+        LinkedListContainer<Integer> linkedListContainer = new LinkedListContainer<>();
         Iterator<Integer> itr = linkedListContainer.iterator();
         assertThat(itr.hasNext(), is(false));
     }

@@ -66,6 +66,40 @@ public class LinkedListContainer<E> implements SimpleContainer<E> {
     }
 
     /**
+     * Удаляет первый объект из списка.
+     * @return удаляемый объект.
+     */
+    public E removeFirst() {
+        E result = this.first.item;
+        if (size > 1) {
+            this.first.next.prev = null;
+            this.first = this.first.next;
+        } else {
+            this.first = null;
+            this.last = null;
+        }
+        size--;
+        return result;
+    }
+
+    /**
+     * Удаляет последний объект из списка.
+     * @return удаляемый объект.
+     */
+    public E removeLast() {
+        E result = this.last.item;
+        if (size > 1) {
+            this.last.prev.next = null;
+            this.last = this.last.prev;
+        } else {
+            this.first = null;
+            this.last = null;
+        }
+        size--;
+        return result;
+    }
+
+    /**
      * Метод linkLast.
      * @param element элемент.
      */
