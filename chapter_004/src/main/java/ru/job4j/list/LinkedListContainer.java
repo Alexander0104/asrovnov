@@ -4,12 +4,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * class LinkedListContainer implements SimpleContainer.
+ * class LinkedListContainer implements Iterable.
  * @author Alexander Rovnov.
  * @version 1.0
  * @since 1.0
  */
-public class LinkedListContainer<E> implements SimpleContainer<E> {
+public class LinkedListContainer<E> implements Iterable<E> {
 
     private int size = 0;
     private Node<E> last;
@@ -26,7 +26,6 @@ public class LinkedListContainer<E> implements SimpleContainer<E> {
      * Добавляет элемент в список
      * @param element элемент который нужно добавить в список.
      */
-    @Override
     public void add(E element) {
         linkLast(element);
     }
@@ -39,7 +38,6 @@ public class LinkedListContainer<E> implements SimpleContainer<E> {
      * @throws IllegalArgumentException недопустимый или несоответствующий параметр.
      * @throws ArrayIndexOutOfBoundsException если индекс больше фактического.
      */
-    @Override
     public E get(int index) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
         return node(index).item;
     }

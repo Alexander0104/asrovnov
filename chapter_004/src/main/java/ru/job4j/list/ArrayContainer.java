@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * class ArrayContainer implements SimpleContainer.
+ * class ArrayContainer implements Iterable.
  * @author Alexander Rovnov.
  * @version 1.0
  * @since 1.0
  */
-public class ArrayContainer<E> implements SimpleContainer<E> {
+public class ArrayContainer<E> implements Iterable<E> {
 
     private Object[] container;
     private static final Object[] EMPTY_ELEMENTDATA = {};
@@ -44,7 +44,6 @@ public class ArrayContainer<E> implements SimpleContainer<E> {
      * @param element элемент который нужно вставить в container.
      * @throws ArrayIndexOutOfBoundsException если индекс больше фактического.
      */
-    @Override
     public void add(E element) throws ArrayIndexOutOfBoundsException {
         checkSize(this.index + 1);
         this.container[this.index++] = element;
@@ -58,7 +57,6 @@ public class ArrayContainer<E> implements SimpleContainer<E> {
      * @throws IllegalArgumentException недопустимый или несоответствующий параметр.
      * @throws ArrayIndexOutOfBoundsException если индекс больше фактического.
      */
-    @Override
     public E get(int index) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
         return (E) this.container[index];
     }

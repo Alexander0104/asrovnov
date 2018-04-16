@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
  */
 public class ArrayContainerTest {
 
-    private static SimpleContainer<Integer> arrayContainer;
+    private static ArrayContainer<Integer> arrayContainer;
 
     @Before
     public void beforeTest() {
@@ -67,7 +67,7 @@ public class ArrayContainerTest {
      */
     @Test
     public void whenNotAddElementsInvokeHasNextThanFalse() {
-        SimpleContainer<Integer> arrayContainer = new ArrayContainer<>(0);
+        ArrayContainer<Integer> arrayContainer = new ArrayContainer<>(0);
         Iterator<Integer> itr = arrayContainer.iterator();
         assertThat(itr.hasNext(), is(false));
 
