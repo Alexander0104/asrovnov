@@ -3,12 +3,12 @@ package ru.job4j.map;
 import java.util.HashMap;
 
 /**
- * class public class MapNotOverrideEqualsAndHashCode
+ * class public class TwinMap.
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0
  */
-public class MapNotOverrideEqualsAndHashCode {
+public class  TwinMap {
 
     private HashMap<User, Object> map = new HashMap<>();
 
