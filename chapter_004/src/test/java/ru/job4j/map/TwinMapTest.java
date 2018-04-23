@@ -53,4 +53,21 @@ public class TwinMapTest {
         twinMap.put(second, 2);
         System.out.println(twinMap.getMap());
     }
+
+    /**
+     * Test_03.
+     * Когда переопределен только equals.
+     */
+    @Test
+    public void whenCreateTwoUserAndPutInMapThenDifferentHashCodeBytEqualsResultTrue() {
+        UserOverrideOnlyEquals first = new UserOverrideOnlyEquals("Name", 3, null);
+        UserOverrideOnlyEquals second = new UserOverrideOnlyEquals("Name", 3, null);
+        System.out.println(String.format("First hashCode: %s", first.hashCode()));
+        System.out.println(String.format("Second hashCode: %s", second.hashCode()));
+        System.out.println(first.equals(second));
+        assertThat(first.equals(second), is(true));
+        twinMap.put(first, 3);
+        twinMap.put(second, 3);
+        System.out.println(twinMap.getMap());
+    }
 }
