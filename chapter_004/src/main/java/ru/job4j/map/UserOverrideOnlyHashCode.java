@@ -23,7 +23,7 @@ public class UserOverrideOnlyHashCode extends User {
     }
 
     /**
-     * Переопределенный метод Hash.
+     * Переопределенный метод hashCode.
      */
     @Override
     public int hashCode() {
