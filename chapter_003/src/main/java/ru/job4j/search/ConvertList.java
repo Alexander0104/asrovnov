@@ -36,19 +36,18 @@ public class ConvertList {
      * @return новый массив.
      */
     public int[][] toArray(List<Integer> list, int rows) {
-        int column = list.size() % rows == 0 ? list.size() / rows : list.size() / rows + 1;
-        int[][] result = new int[rows][column];
-        int x = 0, y = 0, count = 0;
-        for (int[] out : result) {
-            for (int in : out) {
-                if (count < list.size()) {
-                    result[x][y++] = list.get(count++);
-                }
+        int cells = (int) Math.ceil((double) list.size() / rows);
+        int[][] array = new int[rows][cells];
+        int row = 0;
+        int cell = 0;
+        for (Integer value: list) {
+            array[row][cell++] = value;
+            if (cell == cells) {
+                cell = 0;
+                row++;
             }
-            x++;
-            y = 0;
         }
-        return result;
+        return array;
     }
 
     /**
