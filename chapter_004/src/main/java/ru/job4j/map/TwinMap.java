@@ -3,7 +3,7 @@ package ru.job4j.map;
 import java.util.HashMap;
 
 /**
- * class public class TwinMap.
+ * class TwinMap.
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0
