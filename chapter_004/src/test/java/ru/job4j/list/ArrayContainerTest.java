@@ -3,14 +3,12 @@ package ru.job4j.list;
 import java.util.Iterator;
 
 import org.junit.Test;
-
 import org.junit.Before;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
  * Test class ArrayContainer.
- *
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0
@@ -35,7 +33,6 @@ public class ArrayContainerTest {
         arrayContainer.add(3);
         arrayContainer.add(4);
         assertThat(arrayContainer.get(3), is(4));
-
     }
 
     /**
@@ -70,6 +67,5 @@ public class ArrayContainerTest {
         ArrayContainer<Integer> arrayContainer = new ArrayContainer<>(0);
         Iterator<Integer> itr = arrayContainer.iterator();
         assertThat(itr.hasNext(), is(false));
-
     }
 }

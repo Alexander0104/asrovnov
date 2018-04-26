@@ -10,7 +10,6 @@ import static org.junit.Assert.assertThat;
 
 /**
  * Test class ConvertList.
- *
  * @author Alexander Rovnov
  * @version 1.2
  * @since 1.2

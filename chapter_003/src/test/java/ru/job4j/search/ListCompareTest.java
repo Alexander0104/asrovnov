@@ -9,7 +9,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Test class ListCompare.
- *
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0

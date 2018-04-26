@@ -6,7 +6,7 @@ public class Student extends Profession {
      * The call to the constructor of the base class with one param.
      * @param name student type String
      */
-    Student(String name) {
+    public Student(String name) {
         super(name);
     }
 }

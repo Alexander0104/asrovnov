@@ -11,6 +11,7 @@ import static org.junit.Assert.assertThat;
  * @since 1.1
  */
 public class MaxTest {
+
     /**
      * Test summation.
      */
@@ -51,5 +52,4 @@ public class MaxTest {
         int result = max.maximumOfThree(10, 5, 4);
         assertThat(result, is(10));
     }
-
 }

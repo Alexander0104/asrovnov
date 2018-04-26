@@ -1,9 +1,9 @@
 package ru.job4j.search;
 
+import java.util.HashMap;
+
 import org.junit.Test;
 import org.junit.Before;
-
-import java.util.HashMap;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

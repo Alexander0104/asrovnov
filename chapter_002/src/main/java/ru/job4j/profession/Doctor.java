@@ -12,7 +12,7 @@ public class Doctor extends Profession {
      * The call to the constructor of the base class with one param.
      * @param name doctor type String
      */
-    Doctor(String name) {
+    public Doctor(String name) {
         super(name);
     }
 
@@ -20,7 +20,7 @@ public class Doctor extends Profession {
      * The call to the constructor of the base class with two param.
      * @param direction type String, initialize a private variable
      */
-    Doctor(String name, String surname, String direction) {
+    public Doctor(String name, String surname, String direction) {
         super(name, surname);
         this.direction = direction;
     }

@@ -8,7 +8,6 @@ import static org.junit.Assert.*;
 
 /**
  * Test class BankTest.
- *
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0

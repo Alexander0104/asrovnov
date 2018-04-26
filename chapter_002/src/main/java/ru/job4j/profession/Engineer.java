@@ -12,7 +12,7 @@ public class Engineer extends Profession {
      * The call to the constructor of the base class with one param.
      * @param name engineer type String
      */
-    Engineer(String name) {
+    public Engineer(String name) {
         super(name);
     }
 
@@ -20,7 +20,7 @@ public class Engineer extends Profession {
      * The call to the constructor of the base class with two param.
      * @param category type String, initialize a private variable
      */
-    Engineer(String name, String surname, String category) {
+    public Engineer(String name, String surname, String category) {
         super(name, surname);
         this.category = category;
     }

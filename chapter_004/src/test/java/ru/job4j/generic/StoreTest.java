@@ -1,7 +1,6 @@
 package ru.job4j.generic;
 
 import org.junit.Test;
-
 import org.junit.Before;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -60,5 +59,4 @@ public class StoreTest {
         assertThat(userStore.delete("1"), is(true));
         assertThat(roleStore.delete("Программист"), is(true));
     }
-
 }

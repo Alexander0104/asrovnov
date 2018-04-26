@@ -1,8 +1,8 @@
 package ru.job4j.generic;
 
-import org.junit.Test;
-
 import java.util.Iterator;
+
+import org.junit.Test;
 import org.junit.Before;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

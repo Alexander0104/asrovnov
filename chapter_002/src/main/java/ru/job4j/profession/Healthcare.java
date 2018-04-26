@@ -13,7 +13,7 @@ public class Healthcare {
      * constructor have a variable number of parameters.
      * @param pacient type String
      */
-    Healthcare(String doctor, String pacient) {
+    public Healthcare(String doctor, String pacient) {
         this.doctor = doctor;
         this.pacient = pacient;
     }

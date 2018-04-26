@@ -37,7 +37,6 @@ public class Triangle {
      * @return Возвращает прощадь, если треугольник существует или -1, если треугольника нет.
      */
     public double area() {
-
         double rsl = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
@@ -58,7 +57,6 @@ public class Triangle {
      * @return true or false.
      */
     private boolean exist(double ab, double ac, double bc) {
-
         return ab + ac > bc && ab + bc > ac && ac + bc > ab;
     }
 }

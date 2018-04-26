@@ -11,14 +11,14 @@ public class Profession {
     /**
      * default constructor.
      */
-    Profession() {
+    public Profession() {
     }
 
     /**
      * constructor have one param.
      * @param name type String
      */
-    Profession(String name) {
+    public Profession(String name) {
         this.name = name;
     }
 
@@ -27,7 +27,7 @@ public class Profession {
      * @param name type String
      * @param surname type String
      */
-    Profession(String name, String surname) {
+    public Profession(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }

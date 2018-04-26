@@ -37,5 +37,4 @@ public class SimpleLinkedSet<E> implements Iterable<E> {
     public Iterator<E> iterator() {
         return this.container.iterator();
     }
-
 }

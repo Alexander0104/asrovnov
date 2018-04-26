@@ -1,15 +1,11 @@
 package ru.job4j.search;
 
 import org.junit.Test;
-
-import java.util.Queue;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
  * Test class PhoneDictionary.
- *
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0

@@ -13,7 +13,7 @@ public class Aviation {
      * @param engineer name type String
      * @param model helicopter type String
      */
-    Aviation(String engineer, String model) {
+    public Aviation(String engineer, String model) {
         this.engineer = engineer;
         this.model = model;
     }

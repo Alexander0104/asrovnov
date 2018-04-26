@@ -1,4 +1,5 @@
 package ru.job4j.list;
+
 import ru.job4j.list.CycleDetection.Node;
 
 import org.junit.Test;

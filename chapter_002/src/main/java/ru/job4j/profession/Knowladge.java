@@ -13,7 +13,7 @@ public class Knowladge {
      * @param teacher type String
      * @param student type String
      */
-    Knowladge(String teacher, String student) {
+    public Knowladge(String teacher, String student) {
         this.teacher = teacher;
         this.student = student;
     }

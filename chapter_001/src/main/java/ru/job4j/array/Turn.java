@@ -15,7 +15,6 @@ public class Turn {
      */
     public int[] back(int[] array) {
         int rev;
-
         for (int index = 0; index < array.length / 2; index++) {
             rev = array[array.length - index - 1];
             array[array.length - index - 1] = array[index];

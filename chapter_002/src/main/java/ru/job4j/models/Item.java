@@ -13,10 +13,10 @@ public class Item {
      * Поля состояния объекта Item
      */
     private String id;
-    public String name;
-    public String description;
-    public String create;
-    public String comment;
+    private String name;
+    private String description;
+    private String create;
+    private String comment;
 
     /**
      * Конструктор по умолчанию.

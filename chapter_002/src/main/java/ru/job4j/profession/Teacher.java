@@ -12,7 +12,7 @@ public class Teacher extends Profession {
      * The call to the constructor of the base class with one param.
      * @param name teacher type String
      */
-    Teacher(String name) {
+    public Teacher(String name) {
         super(name);
     }
 
@@ -20,7 +20,7 @@ public class Teacher extends Profession {
      * The call to the constructor of the base class with two param.
      * @param degree type String, initialize a private variable
      */
-    Teacher(String name, String surname, String degree) {
+    public Teacher(String name, String surname, String degree) {
         super(name, surname);
         this.degree = degree;
     }

@@ -59,6 +59,5 @@ public class MatrixIterator implements Iterator {
             this.row++;
         }
         return result;
-
     }
 }

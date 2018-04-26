@@ -8,7 +8,7 @@ package ru.job4j.profession;
 public class Helicopter {
     private String model;
 
-    Helicopter(String model) {
+    public Helicopter(String model) {
         this.model = model;
     }
 

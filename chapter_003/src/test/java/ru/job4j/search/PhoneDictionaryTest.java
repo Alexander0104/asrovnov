@@ -8,7 +8,6 @@ import static org.junit.Assert.assertThat;
 
 /**
  * Test class PhoneDictionary.
- *
  * @author Alexander Rovnov
  * @version 1.0
  * @since 1.0
