@@ -40,7 +40,7 @@ public class ConvertList {
         int[][] array = new int[rows][cells];
         int row = 0;
         int cell = 0;
-        for (Integer value: list) {
+        for (Integer value : list) {
             array[row][cell++] = value;
             if (cell == cells) {
                 cell = 0;
