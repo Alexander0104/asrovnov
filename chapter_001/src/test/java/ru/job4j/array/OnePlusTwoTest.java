@@ -16,7 +16,7 @@ public class OnePlusTwoTest {
      * result = 1, 2, 3, 4, 5, 6.
      */
     @Test
-    public void whenNewArrayAddArrayOneAndTwoThanNewThirdArray() {
+    public void whenNewArrayAddArrayOneAndTwoThenNewThirdArray() {
         int[] one = {1, 2, 3};
         int[] two = {4, 5, 6};
         OnePlusTwo oneplustwo = new OnePlusTwo();
@@ -30,7 +30,7 @@ public class OnePlusTwoTest {
      * result = 1, 1, 2, 3, 4, 5, 5, 6.
      */
     @Test
-    public void whenNewArrayAddArrayOneAndTwoThanNewThirdSortArray() {
+    public void whenNewArrayAddArrayOneAndTwoThenNewThirdSortArray() {
         int[] one = {1, 2, 3, 5};
         int[] two = {1, 4, 5, 6};
         OnePlusTwo oneplustwo = new OnePlusTwo();

@@ -89,7 +89,7 @@ public class SimpleHashMapTest {
      * NoSuchElementException.
      */
     @Test(expected = NoSuchElementException.class)
-    public void whenAddKeyAndValuesThanKeyAndValuesWithoutDuplicates() {
+    public void whenAddKeyAndValuesThenKeyAndValuesWithoutDuplicates() {
         SimpleHashMap<Integer, String> simpleHashMap = new SimpleHashMap<>(2);
         simpleHashMap.insert(1, "one");
         simpleHashMap.insert(2, "two");

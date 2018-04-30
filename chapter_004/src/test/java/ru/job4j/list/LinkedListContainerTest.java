@@ -27,7 +27,7 @@ public class LinkedListContainerTest {
      * add и get.
      */
     @Test
-    public void whenAddTwoElementsThanTwo() {
+    public void whenAddTwoElementsThenTwo() {
         linkedListContainer.add(1);
         linkedListContainer.add(2);
         assertThat(linkedListContainer.get(1), is(2));
@@ -38,7 +38,7 @@ public class LinkedListContainerTest {
      * removeFirst и removeLast.
      */
     @Test
-    public void whenAddThreeElementsThanDelete() {
+    public void whenAddThreeElementsThenDelete() {
         linkedListContainer.add(1);
         linkedListContainer.add(2);
         linkedListContainer.add(3);
@@ -51,7 +51,7 @@ public class LinkedListContainerTest {
      * Test_03.
      */
     @Test
-    public void whenInvokeHasNextThanCheckTheGetResultsIsGoingToBeTrue() {
+    public void whenInvokeHasNextThenCheckTheGetResultsIsGoingToBeTrue() {
         Iterator<Integer> itr = linkedListContainer.iterator();
         linkedListContainer.add(1);
         linkedListContainer.add(2);
@@ -62,7 +62,7 @@ public class LinkedListContainerTest {
      * Test_04.
      */
     @Test
-    public void whenInvokeHasNextAndNextThanCheckTheGetResultsIsGoingToBeFalse() {
+    public void whenInvokeHasNextAndNextThenCheckTheGetResultsIsGoingToBeFalse() {
         Iterator<Integer> itr = linkedListContainer.iterator();
         linkedListContainer.add(1);
         linkedListContainer.add(2);
@@ -75,7 +75,7 @@ public class LinkedListContainerTest {
      * Test_05.
      */
     @Test
-    public void whenNotAddElementsInvokeHasNextThanFalse() {
+    public void whenNotAddElementsInvokeHasNextThenFalse() {
         LinkedListContainer<Integer> linkedListContainer = new LinkedListContainer<>();
         Iterator<Integer> itr = linkedListContainer.iterator();
         assertThat(itr.hasNext(), is(false));

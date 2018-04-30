@@ -34,7 +34,7 @@ public class CycleDetectionTest {
      * Test_01.
      */
     @Test
-    public void whenCreateCycleListThanTrue() {
+    public void whenCreateCycleListThenTrue() {
         first.next = two;
         two.next = third;
         third.next = four;
@@ -47,7 +47,7 @@ public class CycleDetectionTest {
      * Test_02.
      */
     @Test
-    public void whenCreateCycleListAndCycleItemIsNotFirstThanTrue() {
+    public void whenCreateCycleListAndCycleItemIsNotFirstThenTrue() {
         first.next = two;
         two.next = third;
         third.next = four;
@@ -60,7 +60,7 @@ public class CycleDetectionTest {
      * Test_03.
      */
     @Test
-    public void whenCreateListWithoutCycleThanFalse() {
+    public void whenCreateListWithoutCycleThenFalse() {
         first.next = two;
         two.next = third;
         third.next = four;
