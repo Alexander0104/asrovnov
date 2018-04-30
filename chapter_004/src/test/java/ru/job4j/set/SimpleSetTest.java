@@ -23,6 +23,7 @@ public class SimpleSetTest {
         simpleSet = new SimpleSet<>();
         itr = simpleSet.iterator();
     }
+
     /**
      * Test_01.
      * add.
