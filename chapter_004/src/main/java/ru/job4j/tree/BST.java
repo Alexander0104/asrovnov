@@ -78,7 +78,7 @@ public class BST<E extends Comparable<E>> implements Iterable<E> {
     }
 
     /**
-     * @return итератора.
+     * @return итератор.
      */
     @Override
     public Iterator<E> iterator() {
