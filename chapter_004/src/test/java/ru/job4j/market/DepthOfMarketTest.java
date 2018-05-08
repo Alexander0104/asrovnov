@@ -34,7 +34,6 @@ public class DepthOfMarketTest {
     @Test
     public void whenAddItem() {
         Iterator<Map.Entry<String, LinkedList<Item>>> it = dom.getContainer().entrySet().iterator();
-        Set<String> key = dom.getContainer().keySet();
         assertThat(it.next().getValue().element().getPrice(), is(50));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next().getValue().element().getPrice(), is(30));
