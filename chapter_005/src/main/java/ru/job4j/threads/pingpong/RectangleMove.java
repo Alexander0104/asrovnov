@@ -30,7 +30,7 @@ public class RectangleMove implements Runnable {
      */
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.interrupted()) {
             if (this.rect.getX() >= 300D || this.rect.getX() <= 0D) {
                 this.moveX *= CHANGE_DIRECTION;
             }
@@ -42,7 +42,7 @@ public class RectangleMove implements Runnable {
             try {
                 Thread.sleep(40);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }
