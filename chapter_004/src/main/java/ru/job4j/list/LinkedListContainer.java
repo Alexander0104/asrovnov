@@ -2,6 +2,8 @@ package ru.job4j.list;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
 
 /**
  * class LinkedListContainer implements Iterable.
@@ -9,10 +11,14 @@ import java.util.NoSuchElementException;
  * @version 1.0
  * @since 1.0
  */
+@ThreadSafe
 public class LinkedListContainer<E> implements Iterable<E> {
 
+    @GuardedBy("this")
     private int size = 0;
+    @GuardedBy("this")
     private Node<E> last;
+    @GuardedBy("this")
     private Node<E> first;
 
     /**
@@ -26,7 +32,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * Добавляет элемент в список
      * @param element элемент который нужно добавить в список.
      */
-    public void add(E element) {
+    public synchronized void add(E element) {
         linkLast(element);
     }
 
@@ -38,7 +44,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * @throws IllegalArgumentException недопустимый или несоответствующий параметр.
      * @throws ArrayIndexOutOfBoundsException если индекс больше фактического.
      */
-    public E get(int index) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
+    public synchronized E get(int index) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
         return node(index).item;
     }
 
@@ -47,7 +53,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * @param index позиция в списке.
      * @return значения элементов.
      */
-    private Node<E> node(int index) {
+    private synchronized Node<E> node(int index) {
         Node<E> entryNode;
         if (index < (this.size >> 1)) {
             entryNode = this.first;
@@ -67,7 +73,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * Удаляет первый объект из списка.
      * @return удаляемый объект.
      */
-    public E removeFirst() {
+    public synchronized E removeFirst() {
         E result = this.first.item;
         if (size > 1) {
             this.first.next.prev = null;
@@ -84,7 +90,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * Удаляет последний объект из списка.
      * @return удаляемый объект.
      */
-    public E removeLast() {
+    public synchronized E removeLast() {
         E result = this.last.item;
         if (size > 1) {
             this.last.prev.next = null;
@@ -101,7 +107,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * Метод linkLast.
      * @param element элемент.
      */
-    private void linkLast(E element) {
+    private synchronized void linkLast(E element) {
         final Node<E> lastNode = this.last;
         final Node<E> newNode = new Node<>(lastNode, element, null);
         this.last = newNode;
@@ -122,7 +128,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
         Node<E> prev;
         Node<E> next;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+         Node(Node<E> prev, E element, Node<E> next) {
             this.prev = prev;
             this.item = element;
             this.next = next;
@@ -134,8 +140,7 @@ public class LinkedListContainer<E> implements Iterable<E> {
      * @return Iterator.
      */
     @Override
-    public Iterator<E> iterator() {
-
+    public synchronized Iterator<E> iterator() {
         return new Iterator<E>() {
 
             int count = 0;
