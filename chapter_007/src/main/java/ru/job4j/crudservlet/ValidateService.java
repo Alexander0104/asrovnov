@@ -14,6 +14,9 @@ public class ValidateService {
     private final static ValidateService INSTANCE  = new ValidateService();
     private final Store store = MemoryStore.getInstance();
 
+    private ValidateService() {
+    }
+
     public static ValidateService getInstance() {
         return INSTANCE;
     }

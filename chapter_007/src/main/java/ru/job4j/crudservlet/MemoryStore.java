@@ -15,6 +15,9 @@ public class MemoryStore implements Store {
     private static final MemoryStore INSTANCE = new MemoryStore();
     private Map<Integer, User> store = new ConcurrentHashMap<>();
 
+    private MemoryStore() {
+    }
+
     public static MemoryStore getInstance() {
         return INSTANCE;
     }
