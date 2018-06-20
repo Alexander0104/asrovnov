@@ -21,6 +21,12 @@ public class ValidateService {
         return INSTANCE;
     }
 
+    /**
+     * Метод add.
+     * @param user пользователь.
+     * @return true, если пользователь добавлен,
+     *         false, если не удалось добавить.
+     */
     public boolean add(User user) {
         if (store.findById(user.getId()) == null) {
             store.add(user);
@@ -29,6 +35,12 @@ public class ValidateService {
         return false;
     }
 
+    /**
+     * Метод update.
+     * @param user пользователь.
+     * @return true, если обновлени прошло успешно,
+     *         false, если не удалось обновить.
+     */
     public boolean update(User user) {
         if (store.findById(user.getId()) != null) {
             store.update(user);
@@ -37,6 +49,12 @@ public class ValidateService {
         return false;
     }
 
+    /**
+     * Метод delete.
+     * @param id пользователь.
+     * @return true, если удаление прошло успешно,
+     *         false, если не удалось удалить.
+     */
     public boolean delete(int id) {
         if (store.findById(id) != null) {
             store.delete(id);
@@ -45,6 +63,10 @@ public class ValidateService {
         return false;
     }
 
+    /**
+     * Метод findAll.
+     * @return возвращает всех пользователей в коллекции.
+     */
     public Collection<User> findAll() {
         if (!store.findAll().isEmpty()) {
             return store.findAll();
@@ -52,6 +74,12 @@ public class ValidateService {
         return Collections.EMPTY_LIST;
     }
 
+    /**
+     * Метод findById.
+     * @param id пользователя.
+     * @return возвращает пользователя,
+     *         null в случае отсутствия.
+     */
     public User findById(int id) {
         return store.findById(id);
     }

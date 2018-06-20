@@ -10,13 +10,32 @@ import java.util.Collection;
  */
 public interface Store {
 
+    /**
+     * Метод add.
+     * @param user пользователь.
+     */
     void add(User user);
 
+    /**
+     * Метод update.
+     * @param user пользователь.
+     */
     void update(User user);
 
+    /**
+     * Метод delete.
+     * @param id пользователя.
+     */
     void delete(int id);
 
+    /**
+     * Метод findAll.
+     */
     Collection<User> findAll();
 
+    /**
+     * Метод findById.
+     * @param id пользователя.
+     */
     User findById(int id);
 }
