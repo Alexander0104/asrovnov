@@ -12,9 +12,11 @@ import java.util.Collections;
 public class ValidateService {
 
     private final static ValidateService INSTANCE  = new ValidateService();
-    private final Store store = MemoryStore.getInstance();
+//        private final Store store = MemoryStore.getInstance();
+    private Store store;
 
     private ValidateService() {
+        store = DBStore.getInstance();
     }
 
     public static ValidateService getInstance() {

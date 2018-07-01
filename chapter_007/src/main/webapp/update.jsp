@@ -14,7 +14,7 @@
             name: <br><input type="text" name="name" value="<%=((User) request.getAttribute("user")).getName()%>"><br>
             login:<br><input type="text" name="login" value="<%=((User) request.getAttribute("user")).getLogin()%>"><br>
             email:<br><input type="email" name="email" value="<%=((User) request.getAttribute("user")).getEmail()%>"><br>
-            <br><input type="submit" value="update"><br>
+            <br><input type="submit" value="Обновить"><br>
         </form>
         <form action=<%=request.getContextPath()%>/users>
             <button type="submit">Показать всех пользователей</button>
