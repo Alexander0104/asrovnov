@@ -12,8 +12,8 @@ import java.io.IOException;
 /**
  * class UsersServlet.
  * @author Alexander Rovnov.
- * @version 1.3
- * @since 1.3
+ * @version 1.4
+ * @since 1.4
  */
 public class UsersServlet extends HttpServlet {
 
@@ -22,7 +22,12 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.sendRedirect(String.format("%s/users.jsp", req.getContextPath()));
+        try {
+            req.setAttribute("users", this.validator.findAll());
+            req.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(req, resp);
+        } catch (ServletException | IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -38,8 +43,9 @@ public class UsersServlet extends HttpServlet {
             }
         }
         req.setAttribute("message", message);
+        req.setAttribute("users", this.validator.findAll());
         try {
-            req.getRequestDispatcher("/users.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(req, resp);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage(), e);
         }

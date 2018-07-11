@@ -13,8 +13,8 @@ import java.io.IOException;
 /**
  * class UserUpdateServlet.
  * @author Alexander Rovnov.
- * @version 1.3
- * @since 1.3
+ * @version 1.4
+ * @since 1.4
  */
 public class UserUpdateServlet extends HttpServlet {
 
@@ -31,7 +31,7 @@ public class UserUpdateServlet extends HttpServlet {
             req.setAttribute("message", "Пользователь не найден");
         }
         try {
-            req.getRequestDispatcher("/update.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(req, resp);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -48,7 +48,8 @@ public class UserUpdateServlet extends HttpServlet {
         String message = this.validator.update(updatedUser) ? "Пользовательуспешно обновлен" : "Пользователь не найден";
         req.setAttribute("message", message);
         try {
-            req.getRequestDispatcher("/users.jsp").forward(req, resp);
+            req.setAttribute("users", this.validator.findAll());
+            req.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(req, resp);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage(), e);
         }

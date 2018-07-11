@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Обновить пользователя</title>
 </head>
 <body>
-${message}
+<c:out value="${message}"/>
 <center>
-    <form action="<%=request.getContextPath()%>/edit" method="post">
+    <form action="${pageContext.servletContext.contextPath}/edit" method="post">
         Login: <input type="text" name="login" value="${user.login}"><br>
         Name: <input type="text" name="name" value="${user.name}"><br>
         Email: <input type="text" name="email" value="${user.email}"><br>

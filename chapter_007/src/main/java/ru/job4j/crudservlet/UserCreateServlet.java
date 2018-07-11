@@ -13,8 +13,8 @@ import java.io.IOException;
 /**
  * class UserCreateServlet.
  * @author Alexander Rovnov.
- * @version 1.3
- * @since 1.3
+ * @version 1.4
+ * @since 1.4
  */
 public class UserCreateServlet extends HttpServlet {
 
@@ -24,8 +24,8 @@ public class UserCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            resp.sendRedirect(String.format("%s/create_user.jsp", req.getContextPath()));
-        } catch (IOException e) {
+            req.getRequestDispatcher("/WEB-INF/views/create_user.jsp").forward(req, resp);
+        } catch (IOException | ServletException e) {
             LOGGER.error(e.getMessage(), e);
         }
     }
@@ -43,7 +43,7 @@ public class UserCreateServlet extends HttpServlet {
         }
         req.setAttribute("message", message);
         try {
-            req.getRequestDispatcher("/create_user.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/create_user.jsp").forward(req, resp);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
