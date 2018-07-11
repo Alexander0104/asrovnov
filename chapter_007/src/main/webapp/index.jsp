@@ -9,7 +9,7 @@
     <field>
         <legend style="text-align: center">Действия</legend>
         <p>
-        <form action=<%=request.getContextPath()%>/users>
+        <form action=<%=request.getContextPath()%>/list>
             <button type='submit'>Показать всех пользователей</button>
         </form>
         <form action=<%=request.getContextPath()%>/create>

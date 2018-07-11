@@ -1,8 +1,10 @@
 package ru.job4j.crudservlet;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * class MemoryStore implements Store.
@@ -13,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MemoryStore implements Store {
 
     private static final MemoryStore INSTANCE = new MemoryStore();
+    private final AtomicInteger counter = new AtomicInteger();
     private Map<Integer, User> store = new ConcurrentHashMap<>();
 
     private MemoryStore() {
@@ -24,31 +27,29 @@ public class MemoryStore implements Store {
 
     @Override
     public void add(User user) {
-        store.put(user.getId(), user);
+        final int userId = this.counter.incrementAndGet();
+        user.setId(userId);
+        this.store.put(userId, user);
     }
 
     @Override
     public void update(User user) {
-        if (store.containsKey(user.getId())) {
-            store.put(user.getId(), user);
-        }
+        this.store.replace(user.getId(), user);
     }
 
     @Override
     public void delete(int id) {
-        if (store.containsKey(id)) {
-            store.remove(id);
-        }
+        this.store.remove(id);
     }
 
     @Override
-    public Collection<User> findAll() {
-        return store.values();
+    public List<User> findAll() {
+        return new ArrayList<>(this.store.values());
     }
 
     @Override
     public User findById(int id) {
-        return store.get(id);
+        return this.store.get(id);
     }
 
 }

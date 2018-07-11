@@ -1,51 +1,42 @@
 <%@ page import="ru.job4j.crudservlet.ValidateService" %>
-<%@ page import="static ru.job4j.crudservlet.UserServlet.STORAGE" %>
 <%@ page import="ru.job4j.crudservlet.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Все пользователи</title>
-    <h3 style="text-align:center">Все пользователи</h3>
-    <meta charset='UTF-8'>
-    <style>
-        table { font-family: \"Lucida Sans Unicode\", \"Lucida Grande\", Sans-Serif;
-            font-size: 15px; border-collapse: collapse; text-align: left;  margin: auto;}
-        table, th, td { background: #AFCDE7; padding: 10px 20px; text-align: center;}
-        th, td { border-style: solid;  border-width: 0 1px 1px 0; border-color: white;}
-    </style>
 </head>
 <body>
+${message}
 <center>
-    <field>
-        <table>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>login</th>
-                <th>email</th>
-                <th>date</th>
-                <th>action</th>
-            </tr>
-            <% for (User user : ((ValidateService)session.getAttribute(STORAGE)).findAll()) {%>
-            <tr>
-                <td><%=user.getId()%></td>
-                <td><%=user.getName()%></td>
-                <td><%=user.getLogin()%></td>
-                <td><%=user.getEmail()%></td>
-                <td><%=user.getCrateDate()%></td>
-                <td><form action=<%=request.getContextPath()%>/edit method='get'>
-                    <button value=<%=user.getId()%> name='id' type='submit'>Редактировать</button>
+    <table>
+        <caption>Все пользователи</caption>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Login</th>
+            <th>Email</th>
+        </tr>
+        <%for (User usr : ValidateService.getInstance().findAll()) {%>
+        <tr>
+            <td><%=usr.getId()%></td>
+            <td><%=usr.getName()%></td>
+            <td><%=usr.getLogin()%></td>
+            <td><%=usr.getEmail()%></td>
+            <td>
+                <form action = "<%=request.getContextPath()%>/edit" method="get">
+                    <input type="hidden" name="id" value="<%=usr.getId()%>"/>
+                    <input type="submit" value="Редактировать"/>
                 </form>
-                    <form action=<%=request.getContextPath()%>/remove method='post'>
-                        <button value='<%=user.getId()%>' name='id' type='submit'>Удалить</button>
-                    </form>
-                </td>
-
-            </tr>
-            <% } %>
-        </table>
-    </field>
-    <p style="text-align: right">jsp version</p>
+            </td>
+            <td>
+                <form action="<%=request.getContextPath()%>/list" method="post">
+                    <input type="hidden" name="id" value="<%=usr.getId()%>"/>
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+        </tr>
+        <%}%>
+    </table>
 </center>
 </body>
 </html>

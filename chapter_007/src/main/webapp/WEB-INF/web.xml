@@ -20,7 +20,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <url-pattern>/UserServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UsersServlet</servlet-name>
+        <servlet-class>ru.job4j.crudservlet.UsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>/list</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -39,15 +48,5 @@
     <servlet-mapping>
         <servlet-name>UserCreateServlet</servlet-name>
         <url-pattern>/create</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RemoveUserServlet</servlet-name>
-        <servlet-class>ru.job4j.crudservlet.UserServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RemoveUserServlet</servlet-name>
-        <url-pattern>/remove</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,6 +1,6 @@
 package ru.job4j.crudservlet;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * interface Store.
@@ -31,7 +31,7 @@ public interface Store {
     /**
      * Метод findAll.
      */
-    Collection<User> findAll();
+    List<User> findAll();
 
     /**
      * Метод findById.

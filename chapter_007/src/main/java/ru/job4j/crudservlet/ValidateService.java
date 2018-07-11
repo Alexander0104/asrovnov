@@ -1,19 +1,20 @@
 package ru.job4j.crudservlet;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * class ValidateService.
  * @author Alexander Rovnov.
- * @version 1.0
- * @since 1.0
+ * @version 1.3
+ * @since 1.3
  */
 public class ValidateService {
 
     private final static ValidateService INSTANCE  = new ValidateService();
-//        private final Store store = MemoryStore.getInstance();
-    private Store store;
+    private final Store store;
 
     private ValidateService() {
         store = DBStore.getInstance();
@@ -30,11 +31,21 @@ public class ValidateService {
      *         false, если не удалось добавить.
      */
     public boolean add(User user) {
-        if (store.findById(user.getId()) == null) {
-            store.add(user);
-            return true;
+        boolean result = false;
+        if (user != null
+                && user.getName() != null
+                && user.getLogin() != null
+                && user.getEmail() != null
+                && !user.getName().equals("")
+                && !user.getLogin().equals("")
+                && !user.getEmail().equals("")) {
+            Calendar currentDate = new GregorianCalendar();
+            currentDate.setTime(new Date());
+            user.setCreateDate(currentDate);
+            this.store.add(user);
+            result = true;
         }
-        return false;
+        return result;
     }
 
     /**
@@ -44,11 +55,13 @@ public class ValidateService {
      *         false, если не удалось обновить.
      */
     public boolean update(User user) {
-        if (store.findById(user.getId()) != null) {
-            store.update(user);
-            return true;
+        boolean result = false;
+        if (this.store.findById(user.getId()) != null
+                && user.getEmail() != null) {
+            this.store.update(user);
+            result = true;
         }
-        return false;
+        return result;
     }
 
     /**
@@ -69,11 +82,8 @@ public class ValidateService {
      * Метод findAll.
      * @return возвращает всех пользователей в коллекции.
      */
-    public Collection<User> findAll() {
-        if (!store.findAll().isEmpty()) {
-            return store.findAll();
-        }
-        return Collections.EMPTY_LIST;
+    public List<User> findAll() {
+        return this.store.findAll();
     }
 
     /**
@@ -83,6 +93,6 @@ public class ValidateService {
      *         null в случае отсутствия.
      */
     public User findById(int id) {
-        return store.findById(id);
+        return this.store.findById(id);
     }
 }

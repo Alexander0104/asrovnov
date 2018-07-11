@@ -1,13 +1,13 @@
 package ru.job4j.crudservlet;
 
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
  * class User.
  * @author Alexander Rovnov.
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class User {
 
@@ -15,7 +15,24 @@ public class User {
     private String name;
     private String login;
     private String email;
-    private Timestamp crateDate = new Timestamp(System.currentTimeMillis());
+    private Calendar createDate;
+
+    public User() {
+    }
+
+    public User(String name, String login, String email) {
+        this.name = name;
+        this.login = login;
+        this.email = email;
+    }
+
+    public User(UserServlet.Message msg) {
+        this.id = Integer.parseInt(msg.getId());
+        this.name = msg.getName();
+        this.login = msg.getLogin();
+        this.email = msg.getEmail();
+        this.createDate = msg.getCreateDate();
+    }
 
     /**
      * Метод getId.
@@ -85,16 +102,16 @@ public class User {
      * Метод getCrateDate.
      * @return crateDate дата создания.
      */
-    public Timestamp getCrateDate() {
-        return crateDate;
+    public Calendar getCreateDate() {
+        return this.createDate;
     }
 
     /**
      * Метод setCrateDate.
-     * @param crateDate дата создания.
+     * @param createDate дата создания.
      */
-    public void setCrateDate(Timestamp crateDate) {
-        this.crateDate = crateDate;
+    public void setCreateDate(Calendar createDate) {
+        this.createDate = createDate;
     }
 
     /**
@@ -113,7 +130,7 @@ public class User {
                 && Objects.equals(name, user.name)
                 && Objects.equals(login, user.login)
                 && Objects.equals(email, user.email)
-                && Objects.equals(crateDate, user.crateDate);
+                && Objects.equals(createDate, user.createDate);
     }
 
     /**
@@ -121,7 +138,7 @@ public class User {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, login, email, crateDate);
+        return Objects.hash(id, name, login, email, createDate);
     }
 
     /**
@@ -134,7 +151,7 @@ public class User {
                 + ", name='" + name + '\''
                 + ", login='" + login + '\''
                 + ", email='" + email + '\''
-                + ", crateDate=" + crateDate
+                + ", crateDate=" + createDate
                 + '}'
                 + System.lineSeparator();
     }

@@ -1,151 +1,149 @@
 package ru.job4j.crudservlet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.*;
 
+/**
+ * class DBStore.
+ * @author Alexander Rovnov.
+ * @version 1.1
+ * @since 1.1
+ */
 public class DBStore implements Store {
 
-    private static final String QUERIES = "config.properties";
-    private static final Logger LOGGER = LoggerFactory.getLogger(DBStore.class);
+    private static final Logger LOGGER = LogManager.getLogger("servlets");
+    private static final BasicDataSource SOURCE = new BasicDataSource();
     private static final DBStore INSTANCE = new DBStore();
-    private Properties props;
-    private Connection conn;
+    private static final Properties PROPS = new Properties();
 
-    public DBStore() {
-        try (InputStream reader = getClass().getClassLoader().getResourceAsStream(QUERIES)) {
-            this.props = new Properties();
-            this.props.load(reader);
-            try (PreparedStatement pstmt = connect("create")) {
-                pstmt.execute();
-            }
-        } catch (IOException | SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+    private DBStore() {
     }
 
     public static DBStore getInstance() {
         return INSTANCE;
     }
 
-    private PreparedStatement connect(String query)  {
-        PreparedStatement pstmt = null;
-        try (InputStream reader = getClass().getClassLoader().getResourceAsStream(QUERIES)) {
-            Class.forName("org.postgresql.Driver");
-            this.props = new Properties();
-            this.props.load(reader);
-            this.conn = DriverManager.getConnection(
-                    this.props.getProperty("url"),
-                    this.props.getProperty("username"),
-                    this.props.getProperty("password")
-            );
-            pstmt = this.conn.prepareStatement(
-                    this.props.getProperty(query)
-            );
-        } catch (ClassNotFoundException | IOException | SQLException e) {
+    static {
+        try (InputStream stream = DBStore.class.getClassLoader()
+                .getResourceAsStream("config.properties")) {
+            PROPS.load(stream);
+        } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
-        return pstmt;
+        SOURCE.setDriverClassName("org.postgresql.Driver");
+        SOURCE.setUrl(PROPS.getProperty("url"));
+        SOURCE.setUsername(PROPS.getProperty("username"));
+        SOURCE.setPassword(PROPS.getProperty("password"));
+        SOURCE.setMinIdle(5);
+        SOURCE.setMaxIdle(10);
+        SOURCE.setMaxOpenPreparedStatements(100);
+        createTable();
     }
 
+    private static void createTable() {
+        try (Connection connect = SOURCE.getConnection();
+             Statement st = connect.createStatement()) {
+            st.execute(PROPS.getProperty("create"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void add(User user) {
-        if (user != null) {
-            try (PreparedStatement pstmt = connect("add")) {
-                pstmt.setInt(1, user.getId());
-                pstmt.setString(2, user.getName());
-                pstmt.setString(3, user.getLogin());
-                pstmt.setString(4, user.getEmail());
-                pstmt.setTimestamp(5, user.getCrateDate());
-                pstmt.execute();
-            } catch (SQLException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
-        } else {
-            LOGGER.error("Попытка добавить нулевого пользователя.");
+        try (Connection connect = SOURCE.getConnection();
+             PreparedStatement st = connect.prepareStatement(
+                     PROPS.getProperty("add")
+             )) {
+            st.setString(1, user.getName());
+            st.setString(2, user.getLogin());
+            st.setString(3, user.getEmail());
+            st.setTimestamp(4, new Timestamp(user.getCreateDate().getTimeInMillis()));
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void update(User user) {
-        if (user != null) {
-            try (PreparedStatement pstmt = connect("update")) {
-                pstmt.setString(1, user.getName());
-                pstmt.setString(2, user.getLogin());
-                pstmt.setString(3, user.getEmail());
-                pstmt.setInt(4, user.getId());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                LOGGER.error(e.getSQLState(), e);
-            }
-        } else {
-            LOGGER.error("Попытка обновить нулевого пользователя.");
+    public void update(User newUser) {
+        try (Connection con = SOURCE.getConnection();
+             PreparedStatement st = con.prepareStatement(
+                     PROPS.getProperty("update")
+             )) {
+            st.setString(1, newUser.getName());
+            st.setString(2, newUser.getLogin());
+            st.setString(3, newUser.getEmail());
+            st.setInt(4, newUser.getId());
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void delete(int id) {
-        if (id >= 0) {
-            try (PreparedStatement pstmt = connect("delete")) {
-                pstmt.setInt(1, id);
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                LOGGER.error(e.getSQLState(), e);
-            }
-        } else {
-            LOGGER.error("Попытка удалить пользователя с отрицательным id.");
+    public void delete(int userId) {
+        try (Connection con = SOURCE.getConnection();
+             PreparedStatement st = con.prepareStatement(
+                     PROPS.getProperty("delete")
+             )) {
+            st.setInt(1, userId);
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
+    private User createUser(ResultSet rst) throws SQLException {
+        User user = new User();
+        user.setId(rst.getInt("id"));
+        user.setName(rst.getString("name"));
+        user.setLogin(rst.getString("login"));
+        user.setEmail(rst.getString("email"));
+        Calendar createDate = new GregorianCalendar();
+        createDate.setTimeInMillis(
+                rst.getTimestamp("date").getTime()
+        );
+        user.setCreateDate(createDate);
+        return user;
+    }
+
     @Override
-    public Collection<User> findAll() {
-        List<User> result = new LinkedList<>();
-        User user;
-        try (PreparedStatement pstmt = connect("findAll")) {
-            ResultSet resultSet = pstmt.executeQuery();
-            while (resultSet.next()) {
-                user = new User();
-                user.setId(Integer.valueOf(resultSet.getInt("id")));
-                user.setName(resultSet.getString("name"));
-                user.setLogin(resultSet.getString("login"));
-                user.setEmail((resultSet.getString("email")));
-                user.setCrateDate(resultSet.getTimestamp("date"));
-                result.add(user);
+    public List<User> findAll() {
+        List<User> resultList = new ArrayList<>();
+        try (Connection con = SOURCE.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rst = st.executeQuery(PROPS.getProperty("findAll"))) {
+            while (rst.next()) {
+                resultList.add(this.createUser(rst));
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getSQLState(), e);
+            e.printStackTrace();
         }
-        return result;
+        return resultList;
     }
 
     @Override
     public User findById(int id) {
         User user = null;
-        if (id >= 0) {
-            try (PreparedStatement pstmt = connect("findById")) {
-                pstmt.setInt(1, id);
-                ResultSet resultSet = pstmt.executeQuery();
-                while (resultSet.next()) {
-                    user = new User();
-                    user.setId(Integer.valueOf(resultSet.getInt("id")));
-                    user.setName(resultSet.getString("name"));
-                    user.setLogin(resultSet.getString("login"));
-                    user.setEmail((resultSet.getString("email")));
-                    user.setCrateDate(resultSet.getTimestamp("date"));
+        try (Connection con = SOURCE.getConnection();
+             PreparedStatement st = con.prepareStatement(PROPS.getProperty("findById"))) {
+            st.setInt(1, id);
+            try (ResultSet rstSet = st.executeQuery()) {
+                if (rstSet.next()) {
+                    user = this.createUser(rstSet);
                 }
-            } catch (SQLException e) {
-                LOGGER.error(e.getSQLState(), e);
             }
-        } else {
-            LOGGER.error("Отрицательный id");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return user;
     }
