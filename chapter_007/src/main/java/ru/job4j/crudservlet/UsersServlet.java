@@ -12,8 +12,8 @@ import java.io.IOException;
 /**
  * class UsersServlet.
  * @author Alexander Rovnov.
- * @version 1.4
- * @since 1.4
+ * @version 1.5
+ * @since 1.5
  */
 public class UsersServlet extends HttpServlet {
 
@@ -35,14 +35,16 @@ public class UsersServlet extends HttpServlet {
         String deletingUserId = req.getParameter("id");
         resp.setContentType("text/html");
         String message = "";
+        String error = "";
         if (deletingUserId != null) {
             if (this.validator.delete(Integer.parseInt(deletingUserId))) {
                 message = "Пользователь удален";
             } else {
-                message = "Пользователь не найден";
+                error = "Пользователь не найден";
             }
         }
         req.setAttribute("message", message);
+        req.setAttribute("error", error);
         req.setAttribute("users", this.validator.findAll());
         try {
             req.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(req, resp);

@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * interface Store.
  * @author Alexander Rovnov.
- * @version 1.0
- * @since 1.0
+ * @version 1.2
+ * @since 1.2
  */
 public interface Store {
 
@@ -38,4 +38,10 @@ public interface Store {
      * @param id пользователя.
      */
     User findById(int id);
+
+    /**
+     * Метод findByLogin.
+     * @param login пользователя.
+     */
+    User findByLogin(String login);
 }

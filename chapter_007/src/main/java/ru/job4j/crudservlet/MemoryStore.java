@@ -9,14 +9,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * class MemoryStore implements Store.
  * @author Alexander Rovnov.
- * @version 1.0
- * @since 1.0
+ * @version 1.1
+ * @since 1.1
  */
 public class MemoryStore implements Store {
 
     private static final MemoryStore INSTANCE = new MemoryStore();
     private final AtomicInteger counter = new AtomicInteger();
     private Map<Integer, User> store = new ConcurrentHashMap<>();
+    private final Map<String, Integer> loginId = new ConcurrentHashMap<>();
 
     private MemoryStore() {
     }
@@ -30,16 +31,22 @@ public class MemoryStore implements Store {
         final int userId = this.counter.incrementAndGet();
         user.setId(userId);
         this.store.put(userId, user);
+        this.loginId.put(user.getLogin(), userId);
     }
 
     @Override
     public void update(User user) {
-        this.store.replace(user.getId(), user);
+        User replacedUser = this.store.replace(user.getId(), user);
+        this.loginId.remove(replacedUser.getLogin());
+        this.loginId.put(user.getLogin(), user.getId());
     }
 
     @Override
     public void delete(int id) {
-        this.store.remove(id);
+        User removedUser = this.store.remove(id);
+        if (removedUser != null) {
+            this.loginId.remove(removedUser.getLogin());
+        }
     }
 
     @Override
@@ -52,4 +59,8 @@ public class MemoryStore implements Store {
         return this.store.get(id);
     }
 
+    @Override
+    public User findByLogin(String login) {
+        return this.store.get(this.loginId.get(login));
+    }
 }

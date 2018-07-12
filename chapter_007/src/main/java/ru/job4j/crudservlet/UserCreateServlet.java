@@ -13,8 +13,8 @@ import java.io.IOException;
 /**
  * class UserCreateServlet.
  * @author Alexander Rovnov.
- * @version 1.4
- * @since 1.4
+ * @version 1.5
+ * @since 1.5
  */
 public class UserCreateServlet extends HttpServlet {
 
@@ -35,13 +35,17 @@ public class UserCreateServlet extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
-        String message;
-        if (this.validator.add(new User(name, login, email))) {
+        String role = req.getParameter("role");
+        String password = req.getParameter("password");
+        String message = "";
+        String error = "";
+        if (this.validator.add(new User(name, login, email, role, password))) {
             message = "Пользователь добавлен";
         } else {
-            message = "Неправильные данные, повторите попытку.";
+            error = "Неправильные данные, повторите попытку.";
         }
         req.setAttribute("message", message);
+        req.setAttribute("error", error);
         try {
             req.getRequestDispatcher("/WEB-INF/views/create_user.jsp").forward(req, resp);
         } catch (ServletException | IOException e) {

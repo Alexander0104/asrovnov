@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * class ValidateService.
  * @author Alexander Rovnov.
- * @version 1.3
- * @since 1.3
+ * @version 1.4
+ * @since 1.4
  */
 public class ValidateService {
 
@@ -25,6 +25,24 @@ public class ValidateService {
     }
 
     /**
+     * Метод check.
+     * @param user пользователь.
+     * @return true или false.
+     */
+    private boolean check(User user) {
+        return user != null
+                && user.getName() != null
+                && user.getLogin() != null
+                && user.getEmail() != null
+                && user.getPassword() != null
+                && user.getRole() != null
+                && !user.getPassword().equals("")
+                && !user.getName().equals("")
+                && !user.getLogin().equals("")
+                && !user.getEmail().equals("");
+    }
+
+    /**
      * Метод add.
      * @param user пользователь.
      * @return true, если пользователь добавлен,
@@ -32,18 +50,12 @@ public class ValidateService {
      */
     public boolean add(User user) {
         boolean result = false;
-        if (user != null
-                && user.getName() != null
-                && user.getLogin() != null
-                && user.getEmail() != null
-                && !user.getName().equals("")
-                && !user.getLogin().equals("")
-                && !user.getEmail().equals("")) {
+        if (check(user) && this.findByLogin(user.getLogin()) == null) {
+            result = true;
             Calendar currentDate = new GregorianCalendar();
             currentDate.setTime(new Date());
             user.setCreateDate(currentDate);
             this.store.add(user);
-            result = true;
         }
         return result;
     }
@@ -56,8 +68,7 @@ public class ValidateService {
      */
     public boolean update(User user) {
         boolean result = false;
-        if (this.store.findById(user.getId()) != null
-                && user.getEmail() != null) {
+        if (this.store.findById(user.getId()) != null && check(user)) {
             this.store.update(user);
             result = true;
         }
@@ -94,5 +105,14 @@ public class ValidateService {
      */
     public User findById(int id) {
         return this.store.findById(id);
+    }
+
+    /**
+     * Метод findByLogin.
+     * @param login пользователя.
+     * @return возвращает пользователя,
+     */
+    public User findByLogin(final String login) {
+        return this.store.findByLogin(login);
     }
 }

@@ -14,8 +14,8 @@ import java.util.*;
 /**
  * class DBStore.
  * @author Alexander Rovnov.
- * @version 1.1
- * @since 1.1
+ * @version 1.2
+ * @since 1.2
  */
 public class DBStore implements Store {
 
@@ -52,8 +52,10 @@ public class DBStore implements Store {
         try (Connection connect = SOURCE.getConnection();
              Statement st = connect.createStatement()) {
             st.execute(PROPS.getProperty("create"));
+            st.execute(PROPS.getProperty("root"));
+            st.execute(PROPS.getProperty("index"));
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -67,9 +69,11 @@ public class DBStore implements Store {
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
             st.setTimestamp(4, new Timestamp(user.getCreateDate().getTimeInMillis()));
+            st.setString(5, user.getPassword());
+            st.setString(6, user.getRole());
             st.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -82,10 +86,12 @@ public class DBStore implements Store {
             st.setString(1, newUser.getName());
             st.setString(2, newUser.getLogin());
             st.setString(3, newUser.getEmail());
-            st.setInt(4, newUser.getId());
+            st.setString(4, newUser.getPassword());
+            st.setString(5, newUser.getRole());
+            st.setInt(6, newUser.getId());
             st.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -98,7 +104,7 @@ public class DBStore implements Store {
             st.setInt(1, userId);
             st.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -113,6 +119,8 @@ public class DBStore implements Store {
                 rst.getTimestamp("date").getTime()
         );
         user.setCreateDate(createDate);
+        user.setPassword(rst.getString("password"));
+        user.setRole(rst.getString("role"));
         return user;
     }
 
@@ -126,7 +134,7 @@ public class DBStore implements Store {
                 resultList.add(this.createUser(rst));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return resultList;
     }
@@ -143,8 +151,28 @@ public class DBStore implements Store {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return user;
     }
+
+    @Override
+    public User findByLogin(String login) {
+        User foundUser = null;
+        try (Connection connect = SOURCE.getConnection();
+             PreparedStatement st = connect.prepareStatement(
+                     PROPS.getProperty("findByLogin")
+             )) {
+            st.setString(1, login);
+            try (ResultSet rstSet = st.executeQuery()) {
+                if (rstSet.next()) {
+                    foundUser = this.createUser(rstSet);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return foundUser;
+    }
+
 }

@@ -16,14 +16,19 @@ public class User {
     private String login;
     private String email;
     private Calendar createDate;
+    private String password;
+    private Role role;
 
     public User() {
     }
 
-    public User(String name, String login, String email) {
+    public User(String name, String login, String email, String role, String password) {
         this.name = name;
         this.login = login;
         this.email = email;
+        this.setRole(role);
+        this.password = password;
+
     }
 
     public User(UserServlet.Message msg) {
@@ -32,6 +37,11 @@ public class User {
         this.login = msg.getLogin();
         this.email = msg.getEmail();
         this.createDate = msg.getCreateDate();
+    }
+
+    enum Role {
+        ADMINISTRATOR,
+        USER
     }
 
     /**
@@ -112,6 +122,40 @@ public class User {
      */
     public void setCreateDate(Calendar createDate) {
         this.createDate = createDate;
+    }
+
+    /**
+     * Метод getPassword.
+     * @return password пароль.
+     */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
+     * Метод setPassword.
+     * @param password пароль.
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * Метод getRole.
+     * @return role роль.
+     */
+    public String getRole() {
+        return role.toString();
+    }
+
+    /**
+     * Метод setRole.
+     * @param role роль.
+     */
+    public void setRole(String role) {
+        if (role != null) {
+            this.role = Enum.valueOf(Role.class, role.toUpperCase());
+        }
     }
 
     /**
