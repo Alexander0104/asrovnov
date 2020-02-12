@@ -2,7 +2,6 @@
 language: java
 # Используем режим обычного пользователя для сборки проекта.
 sudo: false
-jdk: oraclejdk9
 services:
   - postgresql
 before_script:
